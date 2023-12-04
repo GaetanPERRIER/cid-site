@@ -1,5 +1,1 @@
-<template>
-  <div>
-    <NuxtWelcome />
-  </div>
-</template>
+<h1>Killian le pd</h1>
