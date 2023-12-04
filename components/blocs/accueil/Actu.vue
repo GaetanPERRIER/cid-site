@@ -6,8 +6,8 @@
                 <div v-for="item in items" :key="item.id" class="swiper-slide u-noselect">
                     <img class="w100" src="../../../assets/imgs/imgs-accueil/president.png">
                     <div class="actu-content-container u-flex u-flex-direction-column u-align-items-end u-gap10 u-p10 h150px">
-                        <h3 class="w100"> {{ item.title }}</h3>
-                        <p class="actu-content  w100"> {{ item.content }}</p>
+                        <h3 class="w100"> {{ data.title }}</h3>
+                        <p class="actu-content  w100"> {{ data.content }}</p>
                         <button class="u-p8"> En savoir plus</button>
                     </div>
                 </div>
@@ -22,9 +22,10 @@
 
 
 export default {
+    
     data() {
         return {
-            items: [
+            data: [
                 // item.title = titre stcocké dans l'api rest
                 // RECUP DE L'API REST ICI POUR LES EVENT
                 { id: 1, title: 'Slide 1', content: "1bafzafzalfzfzlfqlfzqoksokfozqofskfzfqdsssssssssssssssss" },

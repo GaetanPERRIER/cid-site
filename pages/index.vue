@@ -28,9 +28,8 @@
         <h2 class="fs30px u-m20">Actualités</h2>
         <Actu/>
 
-        <section>
-            <p class="test-api"> {{  }}</p>
-        </section>
+        
+
         <Footer/>
     </main>
 </template>
