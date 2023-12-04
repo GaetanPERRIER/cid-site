@@ -1,13 +1,13 @@
 
 <template>
-    <section class="test u-flex u-justify-content-center u-plr200">
-        <div class="swiper mySwiper u-mb250">
+    <section class="test u-flex u-justify-content-center u-plr200 u-mb200">
+        <div class="swiper mySwiper ">
             <div class="swiper-wrapper">
-                <div v-for="item in items" :key="item.id" class="swiper-slide u-noselect">
+                <div v-for="item in data" :key="item.id" class="swiper-slide u-noselect">
                     <img class="w100" src="../../../assets/imgs/imgs-accueil/president.png">
                     <div class="actu-content-container u-flex u-flex-direction-column u-align-items-end u-gap10 u-p10 h150px">
-                        <h3 class="w100"> {{ data.title }}</h3>
-                        <p class="actu-content  w100"> {{ data.content }}</p>
+                        <h3 class="w100"> {{ item.title }}</h3>
+                        <p class="actu-content  w100"> {{ item.content }}</p>
                         <button class="u-p8"> En savoir plus</button>
                     </div>
                 </div>

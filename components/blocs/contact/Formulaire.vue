@@ -17,7 +17,7 @@ export default {
 </script>
 
 <template>
-    <section class="u-flex u-justify-content-center u-mt100">
+    <section class="u-flex u-justify-content-center u-mt100 u-mb100">
         <div class="form-content u-flex u-flex-direction-column u-align-items-center w25 u-p30">
             <h2 class="u-mb30">VOTRE AVIS COMPTE</h2>
             <form class="u-flex u-flex-direction-column u-align-items-center w100" id="form-contact" action="/contact" method="post">

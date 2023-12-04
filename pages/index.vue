@@ -28,7 +28,7 @@
         <h2 class="fs30px u-m20">Actualités</h2>
         <Actu/>
 
-        
+        <p></p>
 
         <Footer/>
     </main>
@@ -72,7 +72,7 @@ export default {
 
 
     async afficherHelloWorld() {
-        const apiURL = "https://django-hello-world-rust-gamma.vercel.app/api/";
+        const apiURL = "http://cidapi.alwaysdata.net/api/";
 
         let dataArray = [];
 

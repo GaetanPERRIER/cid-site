@@ -18,7 +18,7 @@ export default {
 
 <template>
     <!--buttons -->
-    <footer class="u-flex u-flex-direction-column u-pt50 u-pb50 u-mt150">
+    <footer class="u-flex u-flex-direction-column u-pt50 u-pb50 ">
         <div class="u-flex u-justify-content-end u-gap25 u-pr210">
             <button>Nous rejoindre</button>
             <button>Nous contacter</button>

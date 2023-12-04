@@ -20,9 +20,10 @@ export default {
 <template>
     <nav class="u-flex u-justify-content-between u-p20">
         <div class="u-flex u-align-items-center u-gap50 fs18px">
-            <a href="#"><img class="w35px " src="../../assets/imgs/imgs-navbars/logo_CID.png" alt="Logo CID"></a>
+            <NuxtLink to="/"><img class="w35px " src="../../assets/imgs/imgs-navbars/logo_CID.png" alt="Logo CID"></NuxtLink>
+           
             <NuxtLink to="/contact">Nous contacter</NuxtLink>
-            <a href="#">A propos</a>
+            <NuxtLink to="/about">A propos</NuxtLink>
             <a href="#">Galerie</a>
         </div>
         <div class="u-flex u-align-items-center u-gap50">
