@@ -46,7 +46,7 @@ export default {
     // Modules: https://go.nuxtjs.dev/config-modules
     // Ca permet d'exposer les variables scss global dans tous les composants
     modules: [
-        '@nuxtjs/style-resources'
+        '@nuxtjs/style-resources',
     ],
 
     styleResources: {

@@ -27,9 +27,6 @@
         <Cards />
         <h2 class="fs30px u-m20">Actualités</h2>
         <Actu />
-        
-        <p>{{ dataApi.message }}</p>
-
         <Footer />
     </main>
 </template>
@@ -40,7 +37,6 @@ import Navbar from "@/components/blocs/Navbar.vue";
 import Cards from "@/components/blocs/accueil/Cards.vue";
 import Footer from "@/components/blocs/Footer.vue";
 import Actu from "@/components/blocs/accueil/Actu.vue";
-import axios from 'axios';
 
 
 export default {

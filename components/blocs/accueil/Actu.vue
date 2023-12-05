@@ -19,13 +19,12 @@
 </template>
   
 <script>
-import axios from 'axios';
+
 
 
 
 
 export default {
-    
     data() {
         return {
             dataApiSwiper: [],
@@ -45,20 +44,10 @@ export default {
                 },
         });
 
-        this.fetchDataFromAPI();
     },
 
     methods: {
-        async fetchDataFromAPI() {
-            const apiURL = "https://cidapi.alwaysdata.net/api/";
-            try {
-                const response= await axios.get(apiURL);
-                console.log(response.data); 
-                this.dataApiSwiper = response.data;
-            } catch (error) {
-                console.error('Une erreur s\'est produite :', error);
-            }
-        }
+        
     },
 
 
