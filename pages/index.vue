@@ -24,13 +24,13 @@
                 </div>
             </div>
         </header>
-        <Cards/>
+        <Cards />
         <h2 class="fs30px u-m20">Actualités</h2>
-        <Actu/>
+        <Actu />
+        
+        <p>{{ dataApi.message }}</p>
 
-        <p></p>
-
-        <Footer/>
+        <Footer />
     </main>
 </template>
 
@@ -40,102 +40,96 @@ import Navbar from "@/components/blocs/Navbar.vue";
 import Cards from "@/components/blocs/accueil/Cards.vue";
 import Footer from "@/components/blocs/Footer.vue";
 import Actu from "@/components/blocs/accueil/Actu.vue";
+import axios from 'axios';
+
 
 export default {
+    data(){
+        return {
+            dataApi: {}
+        }
+    },
+
     components: {
         Navbar,
         Cards,
         Footer,
         Actu
     },
+
     mounted() {
         this.attachClickEvent();
-        this.afficherHelloWorld();
     },
     methods: {
-    attachClickEvent() {
-      const cercles = document.querySelectorAll(".cercle");
-      const cerclesArray = Array.from(cercles); // Convert NodeList to Array
+        // swiper header
+        
+        attachClickEvent() {
+            const cercles = document.querySelectorAll(".cercle");
+            const cerclesArray = Array.from(cercles); // Convert NodeList to Array
 
-      cercles.forEach(cercle => {
-        cercle.addEventListener('click', () => {
-          cercle.classList.add('visible');
-          const index = cerclesArray.indexOf(cercle);
-          cercles.forEach(element => {
-            if (cerclesArray.indexOf(element) !== index) {
-              element.classList.remove('visible');
-            }
-          });
-        });
-      });
+            cercles.forEach(cercle => {
+                cercle.addEventListener('click', () => {
+                    cercle.classList.add('visible');
+                    const index = cerclesArray.indexOf(cercle);
+                    cercles.forEach(element => {
+                        if (cerclesArray.indexOf(element) !== index) {
+                            element.classList.remove('visible');
+                        }
+                    });
+                });
+            });
+        },        
     },
-
-
-    async afficherHelloWorld() {
-        const apiURL = "http://cidapi.alwaysdata.net/api/";
-
-        let dataArray = [];
-
-        fetch(apiURL)
-            .then(response => {
-                if(!response.ok){
-                    throw new Error('Erreur de réseau.');
-                }
-                return response.json();
-            })
-
-            .then(data =>{
-                dataArray = data;
-                console.log(dataArray);
-            })
-
-            .catch(error =>{
-                console.error("Erreur lors de la récuperation des données", error);
-            })
-    }
-
-  },
 }
 </script>
 
 <style lang="scss">
-header{
+header {
     position: relative;
     border-bottom: 10px solid $color-yellow-sand;
-    nav{
+
+    nav {
         background-color: transparent;
     }
-    .cercle{
-        background-color:rgba(255, 255, 255, 0.5);
+
+    .cercle {
+        background-color: rgba(255, 255, 255, 0.5);
         border-radius: 50%;
         border: 1px solid gray;
-        cursor: pointer; 
-        .image-slider-navbar{
+        cursor: pointer;
+
+        .image-slider-navbar {
             opacity: 0;
             transition: $easeInOutSine 1000ms;
             position: absolute;
             background-size: cover;
-            top: -200px ;
-            left:0;
+            top: -200px;
+            left: 0;
             z-index: -1;
         }
     }
-    .visible{
+
+    .visible {
         background-color: white;
-        .image-slider-navbar{
+
+        .image-slider-navbar {
             opacity: 1;
         }
     }
-    .carroussel-content{
+
+    .carroussel-content {
         color: white;
-        h1{
+
+        h1 {
             text-transform: uppercase;
             text-shadow: black 5px 5px 25px;
-        } 
-        p{
+        }
+
+        p {
             text-shadow: black 5px 5px 15px;
         }
-        button{
+
+        button {
             width: 130px;
             background-color: $color-yellow-sand;
             border-radius: 10px;
@@ -144,15 +138,8 @@ header{
         }
     }
 }
-h2{
-    text-align: center  ;
+
+h2 {
+    text-align: center;
 }
-
-
-
-
-
-
-
-
 </style>

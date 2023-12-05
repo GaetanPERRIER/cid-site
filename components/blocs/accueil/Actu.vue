@@ -3,7 +3,7 @@
     <section class="test u-flex u-justify-content-center u-plr200 u-mb200">
         <div class="swiper mySwiper ">
             <div class="swiper-wrapper">
-                <div v-for="item in data" :key="item.id" class="swiper-slide u-noselect">
+                <div v-for="item in dataApiSwiper" :key="item.id" class="swiper-slide u-noselect">
                     <img class="w100" src="../../../assets/imgs/imgs-accueil/president.png">
                     <div class="actu-content-container u-flex u-flex-direction-column u-align-items-end u-gap10 u-p10 h150px">
                         <h3 class="w100"> {{ item.title }}</h3>
@@ -19,25 +19,16 @@
 </template>
   
 <script>
+import axios from 'axios';
+
+
 
 
 export default {
     
     data() {
         return {
-            data: [
-                // item.title = titre stcocké dans l'api rest
-                // RECUP DE L'API REST ICI POUR LES EVENT
-                { id: 1, title: 'Slide 1', content: "1bafzafzalfzfzlfqlfzqoksokfozqofskfzfqdsssssssssssssssss" },
-                { id: 2, title: 'Slide 2', content: "2bafzafzalfzfzlfqlfzqoksokfozqofskfzfqdpkqpksld,csq,kczoq" },
-                { id: 3, title: 'Slide 3', content: "3bafzafzalfzfzlfqlfzqoksokfozqofskfzfqdpkqpksld,csq,kczoq" },
-                { id: 4, title: 'Slide 4', content: "4bafzafzalfzfzlfqlfzqoksokfozqofskfzfqdpkqpksld,csq,kczoq" },
-                { id: 5, title: 'Slide 5', content: "5bafzafzalfzfzlfqlfzqoksokfozqofskfzfqdpkqpksld,csq,kczoq" },
-                { id: 6, title: 'Slide 6', content: "6bafzafzalfzfzlfqlfzqoksokfozqofskfzfqdpkqpksld,csq,kczoq" },
-                { id: 7, title: 'Slide 7', content: "7bafzafzalfzfzlfqlfzqoksokfozqofskfzfqdpkqpksld,csq,kczoq" },
-                { id: 8, title: 'Slide 8', content: "8bafzafzalfzfzlfqlfzqoksokfozqofskfzfqdpkqpksld,csq,kczoq" },
-                { id: 9, title: 'Slide 9', content: "9bafzafzalfzfzlfqlfzqoksokfozqofskfzfqdpkqpksld,csq,kczoq" },
-            ],
+            dataApiSwiper: [],
         };
     },
     mounted() {
@@ -53,11 +44,21 @@ export default {
                     prevEl: '.swiper-button-prev',
                 },
         });
-    
+
+        this.fetchDataFromAPI();
     },
 
     methods: {
-
+        async fetchDataFromAPI() {
+            const apiURL = "https://cidapi.alwaysdata.net/api/";
+            try {
+                const response= await axios.get(apiURL);
+                console.log(response.data); 
+                this.dataApiSwiper = response.data;
+            } catch (error) {
+                console.error('Une erreur s\'est produite :', error);
+            }
+        }
     },
 
 
