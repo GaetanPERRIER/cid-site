@@ -24,7 +24,7 @@ export default {
            
             <NuxtLink to="/contact">Nous contacter</NuxtLink>
             <NuxtLink to="/about">A propos</NuxtLink>
-            <a href="#">Galerie</a>
+            <NuxtLink to="/galerie/galerie">Galerie</NuxtLink>  
         </div>
         <div class="u-flex u-align-items-center u-gap50">
             <div></div> 

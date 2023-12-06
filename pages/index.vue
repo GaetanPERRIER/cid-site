@@ -27,6 +27,9 @@
         <Cards />
         <h2 class="fs30px u-m20">Actualités</h2>
         <Actu />
+        
+
+        <NuxtLink to="galerie/ajout-image">UWU-Itadakimas</NuxtLink>
         <Footer />
     </main>
 </template>
