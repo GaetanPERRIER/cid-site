@@ -41,7 +41,7 @@
                     </div>
                 </div>
             </div>
-            <input class="bouton-publier" type="submit" name="submit-button" value="Publier">
+            <button class="bouton-publier" type="submit">Publier</button>
         </section>
     </form>
 </template>
@@ -106,7 +106,9 @@ export default {
         margin-top: 10px;
     }
     .bouton-publier{
-        background-color: blue;
+        width: 200px;
+        height: 50px;
+        background-color: $color-blue-dusky;
     }
 }
    

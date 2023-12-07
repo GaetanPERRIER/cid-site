@@ -1,5 +1,5 @@
 <template>
-    <form action="https://cidapi.alwaysdata.net/post_image/" method="post" enctype="multipart/form-data"> 
+    <form action="https://cidapi.alwaysdata.net/post_evenement/" method="post" enctype="multipart/form-data"> 
         <section class="u-flex u-justify-content-center u-mt100 u-mb100">
             <div class="u-flex u-flex-direction-column w50">
                 <label for="Titre">Nom de l'évenement</label>
@@ -56,8 +56,5 @@ export default {
 </script>
 
 <style>
-.image-input{
-    width: 200px;
-    height: 200px;
-}
+
 </style>
