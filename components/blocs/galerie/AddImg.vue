@@ -1,5 +1,5 @@
 <template>
-    <form action="http://cidapi.alwaysdata.net/post_image/" method="post" enctype="multipart/form-data"> 
+    <form action="https://cidapi.alwaysdata.net/post_image/" method="post" enctype="multipart/form-data"> 
         <section class="u-flex u-flex-direction-column u-align-items-center u-gap30 u-mt100 u-mb100">
             <div class="u-flex u-justify-content-center u-gap25 w80">
                 <div class="w50">
