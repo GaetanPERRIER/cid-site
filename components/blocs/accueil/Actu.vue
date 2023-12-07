@@ -44,7 +44,7 @@ export default {
     methods: {
         async fetchSwiper(){
             const nbEvent = 16;
-            const url = "http://cidapi.alwaysdata.net/get_image/" + nbEvent;
+            const url = "https://cidapi.alwaysdata.net/get_image/" + nbEvent;
             try {
                 const res = await fetch(url);
                 this.data = await res.json();
