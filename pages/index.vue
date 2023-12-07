@@ -30,6 +30,7 @@
         
 
         <NuxtLink to="galerie/ajout-image">UWU-Itadakimas</NuxtLink>
+        <NuxtLink to="galerie/ajout-event">UWU-Itadakimas2</NuxtLink>
         <Footer />
     </main>
 </template>

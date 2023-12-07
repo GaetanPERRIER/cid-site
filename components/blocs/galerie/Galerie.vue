@@ -28,7 +28,7 @@ export default {
     methods: {
         async fetchGalerie(){
             const nbImages = 32;
-            const url = "http://cidapi.alwaysdata.net/get_image/" + nbImages;
+            const url = "https://cidapi.alwaysdata.net/get_image/" + nbImages;
             try {
                 const res = await fetch(url);
                 this.data = await res.json();
