@@ -1,13 +1,19 @@
 <template>
     <form action="https://cidapi.alwaysdata.net/post_image/" method="post" enctype="multipart/form-data"> 
         <section class="u-flex u-flex-direction-column u-align-items-center u-gap30 u-mt100 u-mb100">
-            <div class="u-flex u-justify-content-center u-gap25 w80">
+            <div class="u-flex u-justify-content-center u-align-items-center u-gap25 w80">
                 <div class="w50">
-                    <label class="label-photo" for="Photo"></label>
+                    <label class="label-photo" for="Photo">
+                        <img class="img-preview" src="" alt="">
+                        <div class="img-text u-flex u-flex-direction-column u-align-items-center w100">
+                            <p>Déposez une image</p>
+                            <p>Format accepté : PNG,JPEG,WEBP (max : 100Ko)</p>
+                        </div>
+                    </label>
                     <input type="file" id="Photo" name="Photo"  required>
                 </div>
  
-                <div class="input-container u-flex u-flex-direction-column u-justify-content-evenly w50">
+                <div class="input-container-image u-flex u-flex-direction-column u-justify-content-evenly w50">
                     <div>
                         <label for="Titre">Nom de l'image</label>
                         <input type="text" id="Titre" name="Titre" required>
@@ -41,7 +47,8 @@
                     </div>
                 </div>
             </div>
-            <button class="bouton-publier" type="submit">Publier</button>
+
+            <input class="bouton-publier" type="submit" name="submit-button" value="Publier ">
         </section>
     </form>
 </template>
@@ -55,7 +62,8 @@ export default {
         }
     },
     mounted() {
-        this.fetchTheme()
+        this.fetchTheme();
+        this.displayImg();
     },
 
     methods: {
@@ -69,32 +77,63 @@ export default {
                 console.error('Erreur de récupération des données :' ,error);
                 return {dataTheme:[]};
             }
+        },
+
+        async displayImg(){
+            const img = document.querySelector("#Photo");
+            img.addEventListener('change', function(){
+                var file = this.files[0];
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                    var imagePreview = document.querySelector('.img-preview');
+                    const text = document.querySelector('.img-text');
+                    text.style.display ='none'
+                    imagePreview.src = e.target.result;
+                    imagePreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            })
         }
     },
 };
 </script>
 
 
-<style>
+<style lang="scss">
 #Photo{
     display: none;
 }
 
 .label-photo{
     display: block;
+    position: relative;
     width: 100%;
     aspect-ratio: 1/1;
-    border: 1px solid black;
+    cursor: pointer;
+    border: none;
+    .img-preview{
+        width: 100%;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+    }
+    .img-text{
+        position: absolute;
+        top: 62%;
+        font-style: italic;
+        font-size: 15px;
+        color: gray;
+    }
 }
 
-.input-container{
+.input-container-image{
     input{
         width: 100%;
         height: 50px;
         font-size: 15px;
         border: 1px solid gray;
         border-radius: 3px;
-        margin-top: 10px;
+        margin: 10px 0;
     }
     select{
         width: 100%;
@@ -105,11 +144,23 @@ export default {
         border-radius: 3px;
         margin-top: 10px;
     }
-    .bouton-publier{
-        width: 200px;
-        height: 50px;
-        background-color: $color-blue-dusky;
+}
+.bouton-publier{
+        width: fit-content;
+        height:fit-content;
+        background-color: $color-dusky-blue;
+        border: 1px solid white;
+        color: white;
+        border-radius: 20px;
+        padding: 10px 30px;
+        font-size: 20px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all ease-in-out 300ms;
     }
+
+.bouton-publier:hover{
+    background-color: $color-rhino-blue;
 }
    
 </style>

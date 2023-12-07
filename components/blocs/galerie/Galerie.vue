@@ -3,14 +3,17 @@
         <div class="title-galerie">
             <h2>Galerie</h2>
         </div>
+        
         <div class="galerie">
-            <div v-for="item in data" :key="item.id">
+            <div v-for="item in data.results" :key="item.id">
                 <img :src="item.image" alt="image-evenement">
             </div>
         </div>
         <div class="pagination-galerie">
+        
 
         </div>
+        
     </section>
 </template>
     
@@ -27,11 +30,12 @@ export default {
     },
     methods: {
         async fetchGalerie(){
-            const nbImages = 32;
+            const nbImages = 16;
             const url = "https://cidapi.alwaysdata.net/get_image/" + nbImages;
             try {
                 const res = await fetch(url);
                 this.data = await res.json();
+                console.log(this.data);
                 return {data};
             }catch (error){
                 console.error('Erreur de récupération des données :' ,error);
@@ -59,6 +63,8 @@ export default {
         img{
             width: 100%;
             border: 1px solid black;
+            aspect-ratio: 1/1;
+            object-fit: cover;
         }
     }
 
