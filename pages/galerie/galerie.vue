@@ -1,11 +1,5 @@
 <template>
     <main>
-        
-    </main>
-</template>
-
-<template>
-    <main>
         <Navbar/>
         <Galerie/>
         <Footer/>

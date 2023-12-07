@@ -3,7 +3,7 @@
     <section class="test u-flex u-justify-content-center u-plr200 u-mb200">
         <div class="swiper mySwiper ">
             <div class="swiper-wrapper">
-                <div v-for="item in data" :key="item.id" class="swiper-slide u-noselect">
+                <div v-for="item in data" :key="item.id" :id="item.id" class="swiper-slide u-noselect">
                     <img class="w100" :src="item.image" alt="image-evenement">
                     <div class="actu-content-container u-flex u-flex-direction-column u-align-items-end u-gap10 u-p10 h150px">
                         <h3 class="w100"> {{ item.title + item.id }}</h3>
@@ -19,20 +19,14 @@
 </template>
   
 <script>
-
-
-
-
-
 export default {
     data() {
         return {
-            //imgUrl: this.fetchSwiper(),
             data: [],
-        };
+        }
     },
     mounted() {
-        this.swiper = new this.$swiper('.swiper', {
+        this.swiper = new this.$swiper('.mySwiper', {
             loop: true,
             slidesPerView: 3,
             spaceBetween: 20,
@@ -43,18 +37,13 @@ export default {
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
                 },
-            autoplay: {
-                delay: 1000, 
-                disableOnInteraction: false, 
-  },
         });
         this.fetchSwiper()
-
     },
 
     methods: {
         async fetchSwiper(){
-            const nbEvent = 5;
+            const nbEvent = 16;
             const url = "http://cidapi.alwaysdata.net/get_image/" + nbEvent;
             try {
                 const res = await fetch(url);
@@ -64,32 +53,8 @@ export default {
                 console.error('Erreur de récupération des données :' ,error);
                 return {data:[]};
             }
-            
-            
-            
-            
-            
-
-
-
-           /* const data = await res.json();
-            console.log(data);
-            const imgblob = data.image;
-            console.log(imgblob);
-            console.log(typeof(imgblob));
-
-            const blob = new Blob([imgblob], {type : 'text/plain'});
-            console.log(blob);
-            const blobUrl = URL.createObjectURL(blob);
-            console.log(blobUrl);
-*/
-        
-            
         }
     },
-
-
-
     destroyed() {
         if (this.swiper) {
             this.swiper.destroy();
@@ -99,7 +64,7 @@ export default {
 </script>
   
 <style lang="scss">
-/* Vos styles CSS personnalisés pour le swiper */
+
 
 
 .swiper-slide {
