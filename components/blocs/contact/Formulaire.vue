@@ -50,7 +50,7 @@ export default {
                     <textarea rows="4" cols="50" name="message" form="form-contact"></textarea>
                 </div>
 
-                <input class="w25 h30px" type="submit" value="Envoyer">
+                <input class="bouton-publier w25 h30px" type="submit" value="Envoyer">
             </form>
             
         </div>

@@ -48,7 +48,6 @@ export default {
 
 
 <style lang="scss">
-
     .galerie-container{
         .galerie{
             display: grid;

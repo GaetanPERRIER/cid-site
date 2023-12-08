@@ -1,10 +1,15 @@
 <template>
     <form action="https://cidapi.alwaysdata.net/post_evenement/" method="post" enctype="multipart/form-data"> 
-        <section class="u-flex u-flex-direction-column u-align-items-center u-gap30     u-mt100 u-mb100">
+        <section class="u-flex u-flex-direction-column u-align-items-center u-gap30 u-mt50 u-mb100">
+            <h2 class="fs40px">Ajouter un évenement</h2>
             <div class="u-flex u-justify-content-center u-align-items-center u-gap25 w80">
                 <div class="w50">
                     <label class="label-photo" for="Photo">
                         <img class="img-preview" src="" alt="">
+                        <div class="img-text u-flex u-flex-direction-column u-align-items-center w100">
+                            <p>Déposez une image</p>
+                            <p>Format accepté : PNG,JPEG,WEBP (max : 100Ko)</p>
+                        </div>
                     </label>
                     <input type="file" id="Photo" name="Photo"  required>
                 </div>

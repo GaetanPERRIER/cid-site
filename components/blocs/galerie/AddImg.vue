@@ -1,6 +1,7 @@
 <template>
     <form action="https://cidapi.alwaysdata.net/post_image/" method="post" enctype="multipart/form-data"> 
-        <section class="u-flex u-flex-direction-column u-align-items-center u-gap30 u-mt100 u-mb100">
+        <section class="u-flex u-flex-direction-column u-align-items-center u-gap30 u-mt50 u-mb100">
+            <h2 class="fs40px">Ajouter une image</h2>
             <div class="u-flex u-justify-content-center u-align-items-center u-gap25 w80">
                 <div class="w50">
                     <label class="label-photo" for="Photo">
@@ -111,11 +112,15 @@ export default {
     width: 100%;
     aspect-ratio: 1/1;
     cursor: pointer;
-    border: none;
+    background-image: url("../../../assets/imgs/imgs-events_images/icon-appareil-photo.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 25%;
     .img-preview{
         width: 100%;
         aspect-ratio: 1/1;
         object-fit: cover;
+        display: none;
     }
     .img-text{
         position: absolute;
@@ -123,6 +128,7 @@ export default {
         font-style: italic;
         font-size: 15px;
         color: gray;
+        text-align: center;
     }
 }
 
@@ -151,9 +157,9 @@ export default {
         background-color: $color-dusky-blue;
         border: 1px solid white;
         color: white;
-        border-radius: 20px;
+        border-radius: 10px;
         padding: 10px 30px;
-        font-size: 20px;
+        font-size: 15px;
         text-transform: uppercase;
         cursor: pointer;
         transition: all ease-in-out 300ms;

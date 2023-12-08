@@ -9,7 +9,11 @@ export default {
         }
     },
     mounted() {
-
+        const iconProfil = document.querySelector(".icon-profil");
+        const menu = document.querySelector(".menu-profil");
+        iconProfil.addEventListener('click', function (e){
+            menu.classList.toggle("menu-visible");
+        })
     },
     methods: {
 
@@ -21,15 +25,21 @@ export default {
     <nav class="u-flex u-justify-content-between u-p20">
         <div class="u-flex u-align-items-center u-gap50 fs18px">
             <NuxtLink to="/"><img class="w35px " src="../../assets/imgs/imgs-navbars/logo_CID.png" alt="Logo CID"></NuxtLink>
-           
             <NuxtLink to="/contact">Nous contacter</NuxtLink>
-            <NuxtLink to="/about">A propos</NuxtLink>
-            <NuxtLink to="/galerie/galerie">Galerie</NuxtLink>  
+            <NuxtLink to="/">A propos</NuxtLink>
+            <NuxtLink to="/galerie">Galerie</NuxtLink>  
         </div>
         <div class="u-flex u-align-items-center u-gap50">
-            <div></div> 
-            <a href="#"><img class="w35px" src="../../assets/imgs/imgs-navbars/logo_compte.png" alt="Logo mon compte"></a>
+            <a href="#"><img class="icon-profil w40px" src="../../assets/imgs/imgs-navbars/logo_compte.png" alt="Logo mon compte"></a>
         </div>
+        <div class="menu-profil u-flex u-flex-direction-column">
+            <NuxtLink to="/" class="bouton-menu">Mon compte</NuxtLink>
+            <NuxtLink to="/ajout-image" class="bouton-menu">Publier une image</NuxtLink>
+            <NuxtLink to="/ajout-event" class="bouton-menu">Publier un évenement</NuxtLink>
+            <NuxtLink to="/" class="bouton-menu admin">Demandes</NuxtLink>
+            <NuxtLink to="/" class="bouton-menu admin">Comptes</NuxtLink>
+        </div> 
+
     </nav>
 </template>
 
@@ -44,6 +54,37 @@ nav{
         text-transform: uppercase;
         text-decoration: none;
     }
+
+    
+    .menu-profil{
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 20%;
+        height: fit-content;
+        background-color: $color-dusky-blue;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        padding: 10px 15px;
+        .bouton-menu{
+            width: 100%;
+            margin: 5px 0;
+            height: fit-content;
+            color: black;
+            padding: 10px 15px;
+            border-radius: 5px;
+            background-color: $color-yellow-sand;
+        }
+
+        .admin{
+            display: none;
+        }
     }
+    .menu-visible{
+        display: flex;
+    }
+
+}
 
 </style>
