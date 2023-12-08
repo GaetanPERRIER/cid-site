@@ -1,18 +1,18 @@
 <template>
     <main>
-        <Adding/>
+        <Connexion/>
     </main>
 </template>
 
 
 <script>
-import Adding from "@/components/blocs/galerie/AddImg.vue";
+import Connexion from "@/components/blocs/connexion_inscription/Connexion.vue";
 
 
 
 export default{
     components:{
-        Adding,
+        Connexion,
     },
 
     mounted(){

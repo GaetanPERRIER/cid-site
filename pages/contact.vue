@@ -1,24 +1,16 @@
 <template>
     <main>
-        <Navbar/>
         <Formulaire/>
-        <Footer/>
     </main>
 </template>
 
 
 <script>
-import Navbar from "@/components/blocs/Navbar.vue";
 import Formulaire from "@/components/blocs/contact/Formulaire.vue";
-import Footer from "@/components/blocs/Footer.vue";
-
-
 
 export default{
     components:{
-        Navbar,
         Formulaire,
-        Footer
     },
 
     mounted(){

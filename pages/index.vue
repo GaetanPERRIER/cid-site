@@ -1,7 +1,6 @@
 <template>
     <main>
         <header class="u-overflow-hidden">
-            <Navbar />
             <div class="u-flex u-pt200 u-pb200">
                 <div class="u-m50">
                     <div class="cercle w20px h20px u-m5 u-noselect visible ">
@@ -27,15 +26,13 @@
         <Cards />
         <h2 class="fs30px u-m20">Actualités</h2>
         <Actu />
-        <Footer />
+
+        <NuxtLink to="/connexion">ConnexionTemp</NuxtLink>
     </main>
 </template>
 
-
 <script >
-import Navbar from "@/components/blocs/Navbar.vue";
 import Cards from "@/components/blocs/accueil/Cards.vue";
-import Footer from "@/components/blocs/Footer.vue";
 import Actu from "@/components/blocs/accueil/Actu.vue";
 
 
@@ -47,9 +44,7 @@ export default {
     },
 
     components: {
-        Navbar,
         Cards,
-        Footer,
         Actu
     },
 
@@ -80,13 +75,13 @@ export default {
 </script>
 
 <style lang="scss">
+
+
 header {
     position: relative;
     border-bottom: 10px solid $color-yellow-sand;
 
-    nav {
-        background-color: transparent;
-    }
+    
 
     .cercle {
         background-color: rgba(255, 255, 255, 0.5);
@@ -138,4 +133,7 @@ header {
 h2 {
     text-align: center;
 }
+
+
+
 </style>
