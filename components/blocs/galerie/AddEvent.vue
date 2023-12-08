@@ -82,6 +82,8 @@ export default {
 
                 reader.onload = function(e) {
                     var imagePreview = document.querySelector('.img-preview');
+                    const text = document.querySelector('.img-text');
+                    text.style.display ='none';
                     imagePreview.src = e.target.result;
                     imagePreview.style.display = 'block';
                 };

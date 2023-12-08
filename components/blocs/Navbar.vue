@@ -1,28 +1,5 @@
-<script>
-
-export default {
-    name: 'Navbar',
-    components: {},
-    data() {
-        return {
-            isClicked: false
-        }
-    },
-    mounted() {
-        const iconProfil = document.querySelector(".icon-profil");
-        const menu = document.querySelector(".menu-profil");
-        iconProfil.addEventListener('click', function (e){
-            menu.classList.toggle("menu-visible");
-        })
-    },
-    methods: {
-
-    }
-}
-</script>
-
 <template>
-    <nav class="u-flex u-justify-content-between u-p20">
+    <nav :class="{'transparent-navbar' : isTranparent}">
         <div class="u-flex u-align-items-center u-gap50 fs18px">
             <NuxtLink to="/"><img class="w35px " src="../../assets/imgs/imgs-navbars/logo_CID.png" alt="Logo CID"></NuxtLink>
             <NuxtLink to="/contact">Nous contacter</NuxtLink>
@@ -43,8 +20,42 @@ export default {
     </nav>
 </template>
 
+
+<script>
+export default {
+    name: 'Navbar',
+    components: {},
+    props:{
+        isTranparent:{
+            type:Boolean,
+            default:false,
+        },
+    },
+    data() {
+        return {
+            isClicked: false
+        }
+    },
+    mounted() {
+        const iconProfil = document.querySelector(".icon-profil");
+        const menu = document.querySelector(".menu-profil");
+        iconProfil.addEventListener('click', function (e){
+            menu.classList.toggle("menu-visible");
+        })
+    },
+    methods: {
+
+    }
+}
+</script>
+
 <style lang="scss">
+
 nav{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+
     z-index: 2;
     background-color: $color-dusky-blue;
     backdrop-filter: blur(2px);
@@ -54,8 +65,6 @@ nav{
         text-transform: uppercase;
         text-decoration: none;
     }
-
-    
     .menu-profil{
         display: none;
         position: absolute;
@@ -76,7 +85,6 @@ nav{
             border-radius: 5px;
             background-color: $color-yellow-sand;
         }
-
         .admin{
             display: none;
         }
@@ -84,7 +92,13 @@ nav{
     .menu-visible{
         display: flex;
     }
-
+    
+}
+.transparent-navbar{
+    background-color: transparent;
+    position: absolute;
+    top: 0;
+    width: 100%;
 }
 
 </style>

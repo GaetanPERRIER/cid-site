@@ -25,7 +25,8 @@
         </header>
         <Cards />
         <h2 class="fs30px u-m20">Actualités</h2>
-        <Actu />
+
+        <Actu :data="apiData"/>
 
         <NuxtLink to="/connexion">ConnexionTemp</NuxtLink>
     </main>
@@ -37,9 +38,13 @@ import Actu from "@/components/blocs/accueil/Actu.vue";
 
 
 export default {
+    components:{
+        Actu:() => import('@/components/blocs/accueil/Actu.vue'),
+    },
+
     data(){
         return {
-            dataApi: {}
+
         }
     },
 
@@ -50,10 +55,9 @@ export default {
 
     mounted() {
         this.attachClickEvent();
+        this.asyncData();
     },
-    methods: {
-        // swiper header
-        
+    methods: {        
         attachClickEvent() {
             const cercles = document.querySelectorAll(".cercle");
             const cerclesArray = Array.from(cercles); // Convert NodeList to Array
@@ -69,20 +73,29 @@ export default {
                     });
                 });
             });
-        },        
+        },   
+        async asyncData(){
+        const url = "https://cidapi.alwaysdata.net/get_evenement/6";
+        try{
+            const res = await fetch(url);
+            console.log(res);
+            this.apiData = await res.json();
+            console.log(this.apiData);
+            return {apiData};
+
+        }catch(error){
+            console.error('Erreur de récupération des données :', error);
+        }
+    },     
     },
+    
 }
 </script>
 
 <style lang="scss">
-
-
 header {
     position: relative;
     border-bottom: 10px solid $color-yellow-sand;
-
-    
-
     .cercle {
         background-color: rgba(255, 255, 255, 0.5);
         border-radius: 50%;
@@ -99,7 +112,6 @@ header {
             z-index: -1;
         }
     }
-
     .visible {
         background-color: white;
 
@@ -107,19 +119,15 @@ header {
             opacity: 1;
         }
     }
-
     .carroussel-content {
         color: white;
-
         h1 {
             text-transform: uppercase;
             text-shadow: black 5px 5px 25px;
         }
-
         p {
             text-shadow: black 5px 5px 15px;
         }
-
         button {
             width: 130px;
             background-color: $color-yellow-sand;

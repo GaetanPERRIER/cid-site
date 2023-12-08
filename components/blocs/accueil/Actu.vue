@@ -22,7 +22,7 @@
 export default {
     data() {
         return {
-            data: [],
+    
         }
     },
     mounted() {
@@ -38,10 +38,11 @@ export default {
                     prevEl: '.swiper-button-prev',
                 },
         });
-        this.fetchSwiper()
+        /*this.fetchSwiper()*/
     },
 
     methods: {
+        /*
         async fetchSwiper(){
             const nbEvent = 6;
             const url = "https://cidapi.alwaysdata.net/get_evenement/" + nbEvent;
@@ -54,13 +55,17 @@ export default {
                 return {data:[]};
             }
         }
+        */
     },
+
+    
     destroyed() {
         if (this.swiper) {
             this.swiper.destroy();
         }
     },
-};
+}
+
 </script>
   
 <style lang="scss">

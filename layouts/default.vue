@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Navbar/>
+        <Navbar :isTranparent="isHomePage"/>
         <nuxt>
         </nuxt>
         <Footer/>
@@ -15,6 +15,12 @@ export default {
     components:{
         Navbar,
         Footer,
+    },
+
+    computed:{
+        isHomePage(){
+            return this.$route.path === '/';
+        },
     },
     mounted() {
         this.$nextTick(async () => {
