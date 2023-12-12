@@ -20,6 +20,13 @@
   
 <script>
 export default {
+
+    props: {
+        data:{
+            type : Object
+        }
+    },
+
     data() {
         return {
     

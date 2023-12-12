@@ -47,6 +47,7 @@ export default {
     // Ca permet d'exposer les variables scss global dans tous les composants
     modules: [
         '@nuxtjs/style-resources',
+        'cookie-universal-nuxt',
     ],
 
     styleResources: {
