@@ -16,7 +16,6 @@
 
 
 <script>
-
 export default{
     data(){
         return{
@@ -24,13 +23,13 @@ export default{
     },
 
     mounted(){
-        this.test()
+
 
 
     },
 
     methods :{
-
+        /*
         async sendDataToBackend() {
             const csrfToken = this.$cookies.get('csrftoken');
             console.log(csrfToken)
@@ -54,14 +53,7 @@ export default{
                 console.error('Erreur lors de l\'envoi des données au backend :', error);
             }
         },
-
-        async test(){
-            const boutonSubmit = document.querySelector(".bouton-submit")
-
-            boutonSubmit.addEventListener('click', () => {
-                this.sendDataToBackend()
-            });
-        },
+        */
 
     }
 }

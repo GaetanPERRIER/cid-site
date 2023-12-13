@@ -1,6 +1,6 @@
 <template>
     <main>
-        <Connexion/>
+        <Connexion />
     </main>
 </template>
 
@@ -9,8 +9,12 @@
 import Connexion from "@/components/blocs/connexion_inscription/Connexion.vue";
 
 
-
 export default{
+
+    data(){
+        return{
+        }
+    },
     components:{
         Connexion,
     },

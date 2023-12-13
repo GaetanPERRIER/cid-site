@@ -34,7 +34,8 @@ export default {
 
     // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
     plugins: [
-        {src:'~/plugins/swiper.js', mode: 'client'}
+        {src:'~/plugins/swiper.js', mode: 'client'},
+        '~/plugins/axios.js', 
     ],
 
     // Auto import components: https://go.nuxtjs.dev/config-components
@@ -48,7 +49,12 @@ export default {
     modules: [
         '@nuxtjs/style-resources',
         'cookie-universal-nuxt',
+        '@nuxtjs/axios',
     ],
+
+    axios: {
+        // proxy: true
+    },
 
     styleResources: {
         scss: [
@@ -58,5 +64,7 @@ export default {
 
 
     // Build Configuration: https://go.nuxtjs.dev/config-build
-    build: {}
+    build: {
+        transpile: [({ isLegacy }) => isLegacy && 'axios']
+    }
 }

@@ -91,13 +91,28 @@ export default {
 
 .label-photo{
     display: block;
+    position: relative;
     width: 100%;
     aspect-ratio: 1/1;
-    border: 1px solid black;
+    cursor: pointer;
     background-image: url("../../../assets/imgs/imgs-events_images/icon-appareil-photo.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: 25%;
+    .img-preview{
+        width: 100%;
+        aspect-ratio: 1/1;
+        object-fit: cover;
+        display: none;
+    }
+    .img-text{
+        position: absolute;
+        top: 62%;
+        font-style: italic;
+        font-size: 15px;
+        color: gray;
+        text-align: center;
+    }
 }
 
 .input-container-event{
