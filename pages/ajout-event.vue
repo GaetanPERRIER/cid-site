@@ -1,26 +1,36 @@
 <template>
     <main>
-        <AddEvent/>
+        <AddEvent :data = "this.dataTheme"/>
     </main>
 </template>
 
 
 <script>
-import AddEvent from "@/components/blocs/galerie/AddEvent.vue";
-
-
-
 export default{
+    data() {
+        return {
+            dataTheme : {}
+        }
+    },
+
     components:{
-        AddEvent,
+        AddEvent:() => import('@/components/blocs/galerie/AddEvent.vue')
     },
 
     mounted(){
-
+        this.fetchTheme();
     },
 
     methods:{
-        
+        async fetchTheme(){
+            const url = "https://cidapi.alwaysdata.net/get_themes/";
+            try {
+                const res = await fetch(url);
+                this.dataTheme = await res.json();
+            }catch (error){
+                console.error('Erreur de récupération des données :' ,error);
+            }
+        },
     }
 }
 </script>

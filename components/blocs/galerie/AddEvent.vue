@@ -38,7 +38,7 @@
                     <div>
                         <label for="ID_Theme">Theme</label>
                         <select name="ID_Theme" id="ID_Theme">
-                            <option v-for="item in dataTheme" :key="item.ID_Theme" :value="item.ID_Theme">{{ item.Nom_Theme }}</option>
+                            <option v-for="item in data" :key="item.ID_Theme" :value="item.ID_Theme">{{ item.Nom_Theme }}</option>
                         </select>
                     </div>
                 </div>
@@ -51,29 +51,17 @@
 
 <script>
 export default {
-    data() {
-        return {
-            dataTheme: [],
+    props: {
+        data:{
+            type : Object
         }
     },
     mounted() {
-        this.fetchTheme();
         this.displayImg();
     },
 
     methods: {
-        async fetchTheme(){
-            const url = "https://cidapi.alwaysdata.net/get_themes/";
-            try {
-                const res = await fetch(url);
-                this.dataTheme = await res.json();
-                return {dataTheme};
-            }catch (error){
-                console.error('Erreur de récupération des données :' ,error);
-                return {dataTheme:[]};
-            }
-        },
-
+    
         async displayImg(){
             const img = document.querySelector("#Photo");
             img.addEventListener('change', function(){

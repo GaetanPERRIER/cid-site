@@ -45,24 +45,10 @@ export default {
                     prevEl: '.swiper-button-prev',
                 },
         });
-        /*this.fetchSwiper()*/
     },
 
     methods: {
-        /*
-        async fetchSwiper(){
-            const nbEvent = 6;
-            const url = "https://cidapi.alwaysdata.net/get_evenement/" + nbEvent;
-            try {
-                const res = await fetch(url);
-                this.data = await res.json();
-                return {data};
-            }catch (error){
-                console.error('Erreur de récupération des données :' ,error);
-                return {data:[]};
-            }
-        }
-        */
+        
     },
 
     

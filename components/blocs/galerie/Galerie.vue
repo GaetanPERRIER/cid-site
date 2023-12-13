@@ -20,28 +20,15 @@
     
 <script>
 export default {
-    data() {
-        return {
-            data: [],
+    props: {
+        data:{
+            type : Object
         }
     },
     mounted() {
-        this.fetchGalerie();
     },
     methods: {
-        async fetchGalerie(){
-            const nbImages = 16;
-            const url = "https://cidapi.alwaysdata.net/get_image/" + nbImages;
-            try {
-                const res = await fetch(url);
-                this.data = await res.json();
-                console.log(this.data);
-                return {data};
-            }catch (error){
-                console.error('Erreur de récupération des données :' ,error);
-                return {data:[]};
-            }
-        }
+        
     },
 };
 </script>

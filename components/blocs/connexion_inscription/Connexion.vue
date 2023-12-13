@@ -33,6 +33,7 @@ export default{
 
         async sendDataToBackend() {
             const csrfToken = this.$cookies.get('csrftoken');
+            console.log(csrfToken)
             const url = 'https://cidapi.alwaysdata.net/connexion/';
             const dataToSend = { 
                 Login: "cidapi",

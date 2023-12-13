@@ -26,20 +26,20 @@
         <Cards />
         <h2 class="fs30px u-m20">Actualités</h2>
 
-        <Actu :data="apiData"/>
+        <Actu :data="this.apiData"/>
 
         <NuxtLink to="/connexion">ConnexionTemp</NuxtLink>
     </main>
 </template>
 
-<script >
-import Cards from "@/components/blocs/accueil/Cards.vue";
-import Actu from "@/components/blocs/accueil/Actu.vue";
+<script >   
+
 
 
 export default {
     components:{
         Actu:() => import('@/components/blocs/accueil/Actu.vue'),
+        Cards:() => import('@/components/blocs/accueil/Cards.vue')
     },
 
     data(){
@@ -48,10 +48,6 @@ export default {
         }
     },
 
-    components: {
-        Cards,
-        Actu
-    },
 
     mounted() {
         this.attachClickEvent();
@@ -78,11 +74,7 @@ export default {
         const url = "https://cidapi.alwaysdata.net/get_evenement/6";
         try{
             const res = await fetch(url);
-            console.log(res);
             this.apiData = await res.json();
-            console.log(this.apiData);
-            return {apiData};
-
         }catch(error){
             console.error('Erreur de récupération des données :', error);
         }
