@@ -3,4 +3,6 @@ export default function ({ $axios }) {
     // everyplace where nuxt inject axios, like Vue components, and store
     $axios.defaults.xsrfHeaderName = 'x-csrftoken'
     $axios.defaults.xsrfCookieName = 'csrftoken'
+    $axios.defaults.withCredentials = true
 }
+

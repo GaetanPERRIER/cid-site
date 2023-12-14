@@ -16,6 +16,7 @@
 
 
 <script>
+import axiox from 'axios';
 export default{
     data(){
         return{
@@ -24,37 +25,14 @@ export default{
 
     mounted(){
 
-
-
+       
     },
 
     methods :{
-        /*
-        async sendDataToBackend() {
-            const csrfToken = this.$cookies.get('csrftoken');
-            console.log(csrfToken)
-            const url = 'https://cidapi.alwaysdata.net/connexion/';
-            const dataToSend = { 
-                Login: "cidapi",
-                Mdp: "tenezlemdp",
-             };
-            console.log(JSON.stringify(dataToSend))
-            try {
-                const response = await fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRFToken': csrfToken, // Utilisation du CSRF Token récupéré
-                    },
-                    body: JSON.stringify(dataToSend)
-                });
-                // Traitez la réponse comme nécessaire
-            } catch (error) {
-                console.error('Erreur lors de l\'envoi des données au backend :', error);
-            }
-        },
-        */
+        
 
-    }
 }
+}
+
+        
 </script>

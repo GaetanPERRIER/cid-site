@@ -1,5 +1,5 @@
 <template>
-    <form action="https://cidapi.alwaysdata.net/post_image/" method="post" enctype="multipart/form-data"> 
+    <form  enctype="multipart/form-data"> 
         <section class="u-flex u-flex-direction-column u-align-items-center u-gap30 u-mt50 u-mb100">
             <h2 class="fs40px">Ajouter une image</h2>
             <div class="u-flex u-justify-content-center u-align-items-center u-gap25 w80">
@@ -67,6 +67,19 @@ export default {
     },
 
     methods: {
+
+        async submitForm() {
+            const url ="https://cidapi.alwaysdata.net/post_image/";
+            try {
+                
+                const response = await axios.post(url, this.formData);
+                console.log('Réponse du serveur :', response.data);
+                // Faites quelque chose avec la réponse du serveur si nécessaire
+            } catch (error) {
+                console.error('Erreur lors de la soumission du formulaire :', error);
+                // Gérez les erreurs ici
+            }
+        },
         async displayImg(){
             const img = document.querySelector("#Photo");
             img.addEventListener('change', function(){
