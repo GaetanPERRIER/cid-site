@@ -1,5 +1,5 @@
 <template>
-    <form action="https://cidapi.alwaysdata.net/post_image/" method="post" enctype="multipart/form-data"> 
+    <form @submit.prevent="postImage" enctype="multipart/form-data"> 
         <section class="u-flex u-flex-direction-column u-align-items-center u-gap30 u-mt50 u-mb100">
             <h2 class="fs40px">Ajouter une image</h2>
             <div class="u-flex u-justify-content-center u-align-items-center u-gap25 w80">
@@ -17,32 +17,32 @@
                 <div class="input-container-image u-flex u-flex-direction-column u-justify-content-evenly w50">
                     <div>
                         <label for="Titre">Nom de l'image</label>
-                        <input type="text" id="Titre" name="Titre" required>
+                        <input type="text" v-model="formData.Titre" id="Titre" name="Titre" required>
                     </div>
 
                     <div>
                         <label for="Personnes">Personnes sur l'image (facultatif)</label>
-                        <input type="text" id="Personnes" name="Personnes">
+                        <input type="text" v-model="formData.Personnes" id="Personnes" name="Personnes">
                     </div>
 
                     <div>
                         <label for="Photographe">Photographe</label>
-                        <input type="text" id="Photographe" name="Photographe">
+                        <input type="text" v-model="formData.Photographe" id="Photographe" name="Photographe">
                     </div>
 
                     <div>
                         <label for="Lieu_photo">Lieu</label>
-                        <input type="text" id="Lieu_Photo" name="Lieu_Photo">
+                        <input type="text" v-model="formData.Lieu_Photo" id="Lieu_Photo" name="Lieu_Photo">
                     </div>
 
                     <div>
                         <label for="Date_Photo">Date</label>
-                        <input type="date" id="Date_Photo" name="Date_Photo" required>
+                        <input type="date" v-model="formData.Date_Photo" id="Date_Photo" name="Date_Photo" required>
                     </div>
 
                     <div>
                         <label for="ID_Theme">Theme</label>
-                        <select name="ID_Theme" id="ID_Theme">
+                        <select name="ID_Theme" v-model="formData.ID_Theme" id="ID_Theme">
                             <option v-for="item in data" :key="item.ID_Theme" :value="item.ID_Theme">{{ item.Nom_Theme }}</option>
                         </select>
                     </div>
@@ -55,8 +55,21 @@
 </template>
 
 <script>
-
+import axios from 'axios';
 export default {
+    data(){
+        return{
+            formData:{
+                Titre: '',
+                Personnes:'',
+                Photographe:'',
+                Lieu_Photo:'',
+                Date_Photo: '',
+                ID_Theme:'',
+            }
+        }
+    },
+
     props: {
         data:{
             type : Object
@@ -68,26 +81,32 @@ export default {
 
     methods: {
 
-        async submitForm() {
+        async postImage() {
+
             const url ="https://cidapi.alwaysdata.net/post_image/";
+            console.log(this.formData)
             try {
-                
-                const response = await axios.post(url, this.formData);
+                const response = await axios.post(url, this.formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        'Authorization': `Token ${token}`,
+                    },
+                });
                 console.log('Réponse du serveur :', response.data);
-                // Faites quelque chose avec la réponse du serveur si nécessaire
             } catch (error) {
                 console.error('Erreur lors de la soumission du formulaire :', error);
-                // Gérez les erreurs ici
             }
         },
+
+
         async displayImg(){
             const img = document.querySelector("#Photo");
             img.addEventListener('change', function(){
-                var file = this.files[0];
-                var reader = new FileReader();
+                let file = this.files[0];
+                let reader = new FileReader();
 
                 reader.onload = function(e) {
-                    var imagePreview = document.querySelector('.img-preview');
+                    let imagePreview = document.querySelector('.img-preview');
                     const text = document.querySelector('.img-text');
                     text.style.display ='none'
                     imagePreview.src = e.target.result;

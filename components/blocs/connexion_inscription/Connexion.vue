@@ -1,12 +1,12 @@
 <template>
     <section class="u-flex u-justify-content-center u-mt280 u-mb280">
-        <form class="u-flex u-flex-direction-column form-connexion" target="_blank" method="POST" action="https://cidapi.alwaysdata.net/connexion/">
+        <form @submit.prevent="postConnexion" class="u-flex u-flex-direction-column form-connexion" target="_blank" >
             <h2>Connexion</h2>
             <label for="Login">Login</label>
-            <input type="text" id="Login" name="Login">
+            <input type="text" v-model="formData.Login" id="Login" name="Login">
 
             <label for="Mdp">Mot de passe</label>
-            <input type="password" id="Mdp" name="Mdp">
+            <input type="password" v-model="formData.Mdp"  id="Mdp" name="Mdp">
 
             <input class="bouton-submit" type="submit" value="Send">
 
@@ -16,10 +16,14 @@
 
 
 <script>
-import axiox from 'axios';
+import axios from 'axios'
 export default{
     data(){
         return{
+            formData: {
+                Login : "",
+                Mdp:"",
+            }
         }
     },
 
@@ -29,7 +33,15 @@ export default{
     },
 
     methods :{
-        
+        async postConnexion(){
+            const url = "https://cidapi.alwaysdata.net/connexion/";
+            try {
+                const response = await axios.post(url, this.formData)
+                console.log(response.data);
+            }catch(error){
+                console.error('Erreur lors de la soumission du formulaire :', error);
+            }
+        }
 
 }
 }
