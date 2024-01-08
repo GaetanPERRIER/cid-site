@@ -1,6 +1,6 @@
 <template>
     <main>
-        <AffichageEvent :data = "this.data"/>
+        <AffichageImage :data = "this.data"/>
     </main>
 </template>
 
@@ -14,16 +14,16 @@ export default{
     },
 
     components:{
-        AffichageEvent:() => import('@/components/blocs/galerie/AffichageEvents.vue')
+        AffichageImage:() => import('@/components/blocs/galerie/AffichageImage.vue')
     },
 
     mounted(){
-        this.fetchEvents();
+        this.fetchImages();
     },
 
     methods:{
-        async fetchEvents(){
-            const url = "https://cidapi.alwaysdata.net/get_themes/";
+        async fetchImages(){
+            const url = "https://cidapi.alwaysdata.net/get_image/";
             try {
                 const res = await fetch(url);
                 this.data = await res.json();

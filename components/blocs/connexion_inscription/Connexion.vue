@@ -1,6 +1,6 @@
 <template>
     <section class="u-flex u-justify-content-center u-mt280 u-mb280">
-        <form @submit.prevent="postConnexion" class="u-flex u-flex-direction-column form-connexion" target="_blank" >
+        <form @submit.prevent="postConnexion" class="u-flex u-flex-direction-column form-connexion" >
             <h2>Connexion</h2>
             <label for="Login">Login</label>
             <input type="text" v-model="formData.Login" id="Login" name="Login">
@@ -32,19 +32,18 @@ export default{
        
     },
 
-    methods :{
-        async postConnexion(){
+    methods: {
+        async postConnexion() {
             const url = "https://cidapi.alwaysdata.net/connexion/";
-                try {
+            try {
                 const response = await axios.post(url, this.formData)
-                const token = response.data.token
-                localStorage.setItem('token',token)
-            }catch(error){
+                console.log(response)
+            } catch (error) {
                 console.error('Erreur lors de la soumission du formulaire :', error);
             }
         }
 
-}
+    }
 }
 
         
