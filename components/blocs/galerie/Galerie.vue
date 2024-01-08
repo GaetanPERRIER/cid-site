@@ -5,9 +5,11 @@
         </div>
         
         <div class="galerie">
-            <div v-for="item in data.results" :key="item.id">
-                <img :src="item.image" alt="image-evenement">
-            </div>
+            <NuxtLink class="events-link" to="/">
+                <div v-for="item in data.results" :key="item.id">
+                    <img :src="item.image" alt="image-evenement">
+                </div>
+            </NuxtLink>
         </div>
         <div class="pagination-galerie">
         

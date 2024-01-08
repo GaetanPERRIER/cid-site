@@ -11,7 +11,7 @@
                             <p>Format accepté : PNG,JPEG,WEBP (max : 100Ko)</p>
                         </div>
                     </label>
-                    <input type="file" id="Photo" name="Photo"  required>
+                    <input type="file" id="Photo" name="Photo" @change="handleFileChange" required>
                 </div>
  
                 <div class="input-container-image u-flex u-flex-direction-column u-justify-content-evenly w50">
@@ -60,6 +60,7 @@ export default {
     data(){
         return{
             formData:{
+                Photo: null,
                 Titre: '',
                 Personnes:'',
                 Photographe:'',
@@ -80,16 +81,16 @@ export default {
     },
 
     methods: {
+        handleFileChange(event) {
+            this.formData.Photo = event.target.files[0];
+        },
 
         async postImage() {
-
             const url ="https://cidapi.alwaysdata.net/post_image/";
-            console.log(this.formData)
             try {
                 const response = await axios.post(url, this.formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
-                        'Authorization': `Token ${token}`,
                     },
                 });
                 console.log('Réponse du serveur :', response.data);
@@ -97,7 +98,6 @@ export default {
                 console.error('Erreur lors de la soumission du formulaire :', error);
             }
         },
-
 
         async displayImg(){
             const img = document.querySelector("#Photo");

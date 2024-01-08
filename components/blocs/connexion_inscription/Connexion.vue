@@ -35,9 +35,10 @@ export default{
     methods :{
         async postConnexion(){
             const url = "https://cidapi.alwaysdata.net/connexion/";
-            try {
+                try {
                 const response = await axios.post(url, this.formData)
-                console.log(response.data);
+                const token = response.data.token
+                localStorage.setItem('token',token)
             }catch(error){
                 console.error('Erreur lors de la soumission du formulaire :', error);
             }
