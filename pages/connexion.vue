@@ -1,7 +1,6 @@
 <template>
     <main>
         <Connexion />
-        <button class="logout">Deco toi zebi</button>
     </main>
 </template>
 
@@ -25,12 +24,7 @@ export default{
     },
 
     methods:{
-        Logout(){
-            const btnLogout = document.querySelector(".logout")
-            btnLogout.addEventListener("click", () => {
-                
-            })
-        }
+        
     }
 }
 </script>

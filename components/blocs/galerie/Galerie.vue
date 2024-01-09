@@ -5,11 +5,11 @@
         </div>
         
         <div class="galerie">
-                <div v-for="item in data.results" :key="item.ID_Photo">
-                    <NuxtLink to="/affichage-image">
-                        <img :src="item.Photo" :id="item.ID_Photo" alt="image-evenement" class="image-galerie">
-                    </NuxtLink>
-                </div>
+            <div v-for="item in data.results" :key="item.ID_Photo">
+                <NuxtLink to="/">
+                    <img :src="item.Photo" :id="item.ID_Photo" alt="image-evenement" class="image-galerie" name="">
+                </NuxtLink>
+            </div>
         </div>
         <div class="pagination-galerie">
         
@@ -32,7 +32,7 @@ export default {
     },
 
     updated(){
-        this.ClickImages();
+        this.ClickImages(); 
     },
 
     methods: {

@@ -10,6 +10,8 @@
             <a href="#"><img class="icon-profil w40px" src="../../assets/imgs/imgs-navbars/logo_compte.png" alt="Logo mon compte"></a>
         </div>
         <div class="menu-profil u-flex u-flex-direction-column">
+            <NuxtLink to="/connexion" class="bouton-menu">Connexion</NuxtLink>
+            <NuxtLink to="/" class="bouton-menu">Créer un compte</NuxtLink>
             <NuxtLink to="/" class="bouton-menu">Mon compte</NuxtLink>
             <NuxtLink to="/ajout-image" class="bouton-menu">Publier une image</NuxtLink>
             <NuxtLink to="/ajout-event" class="bouton-menu">Publier un évenement</NuxtLink>
