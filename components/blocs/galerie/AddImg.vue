@@ -90,8 +90,8 @@ export default {
             try {
                 const response = await axios.post(url, this.formData, {
                     headers: {
-                        'Content-Type': 'multipart/form-data',
-                        'HTTP_AUTHORIZATION' : 'Bearer ' + localStorage.getItem("acess_token"),
+                        //'Authorization' : 'Bearer ' + localStorage.getItem("access_token"),
+                        'Authorization' : `Bearer ${localStorage.getItem("access_token")}`,
 
                     },
                 });
