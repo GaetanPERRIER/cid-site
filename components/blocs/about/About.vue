@@ -1,6 +1,6 @@
 <template>
     <section>
-        
+        <div></div>
     </section>
 </template>
     
@@ -9,6 +9,7 @@
 export default {
     mounted() {
     },
+
     methods: {
         
     },

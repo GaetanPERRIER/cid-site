@@ -91,6 +91,8 @@ export default {
                 const response = await axios.post(url, this.formData, {
                     headers: {
                         'Content-Type': 'multipart/form-data',
+                        'HTTP_AUTHORIZATION' : 'Bearer ' + localStorage.getItem("acess_token"),
+
                     },
                 });
                 console.log('Réponse du serveur :', response.data);

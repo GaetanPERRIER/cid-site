@@ -5,13 +5,11 @@
         </div>
         
         <div class="galerie">
-            
-                <div v-for="item in data.results" :key="item.id">
-                    <NuxtLink class="events-link" to="/">
-                        <img :src="item.image" alt="image-evenement">
+                <div v-for="item in data.results" :key="item.ID_Photo">
+                    <NuxtLink to="/affichage-image">
+                        <img :src="item.Photo" :id="item.ID_Photo" alt="image-evenement" class="image-galerie">
                     </NuxtLink>
                 </div>
-            
         </div>
         <div class="pagination-galerie">
         
@@ -30,9 +28,23 @@ export default {
         }
     },
     mounted() {
-    },
-    methods: {
         
+    },
+
+    updated(){
+        this.ClickImages();
+    },
+
+    methods: {
+        ClickImages(){
+            const Images = document.querySelectorAll(".image-galerie")
+            Images.forEach((img) => {
+                img.addEventListener('click', () => {
+                    
+                })
+            })
+
+        }
     },
 };
 </script>

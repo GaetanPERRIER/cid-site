@@ -3,7 +3,7 @@
         <div class="u-flex u-align-items-center u-gap50 fs18px">
             <NuxtLink to="/"><img class="w35px " src="../../assets/imgs/imgs-navbars/logo_CID.png" alt="Logo CID"></NuxtLink>
             <NuxtLink to="/contact">Nous contacter</NuxtLink>
-            <NuxtLink to="/">A propos</NuxtLink>
+            <NuxtLink to="/about">A propos</NuxtLink>
             <NuxtLink to="/galerie">Galerie</NuxtLink>  
         </div>
         <div class="u-flex u-align-items-center u-gap50">

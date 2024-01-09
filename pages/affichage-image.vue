@@ -23,7 +23,7 @@ export default{
 
     methods:{
         async fetchImages(){
-            const url = "https://cidapi.alwaysdata.net/get_image/";
+            const url = "https://cidapi.alwaysdata.net/get_image/16";
             try {
                 const res = await fetch(url);
                 this.data = await res.json();

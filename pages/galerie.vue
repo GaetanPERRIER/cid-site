@@ -8,7 +8,6 @@
 <script >
 export default {
 
-
     data(){
         return {
             apiData: {}
@@ -16,7 +15,7 @@ export default {
     },
 
     components: {
-        Galerie:() => import('@/components/blocs/galerie/Galerie.vue')
+        Galerie:() => import('@/components/blocs/galerie/Galerie.vue'),
     },
 
     mounted() {
@@ -24,18 +23,20 @@ export default {
     },
     methods: {
         async fetchGalerie(){
-            const nbImages = 15;
-            const url = "https://cidapi.alwaysdata.net/get_image/" + nbImages;
+            const nbImages = 16;
+            const url = "https://cidapi.alwaysdata.net/get_images/4";
             try {
                 const res = await fetch(url);
                 this.apiData = await res.json();
             }catch (error){
                 console.error('Erreur de récupération des données :' ,error);
             }
-        }
+        } 
     }  
 }
 </script>
+
+
 
 <style lang="scss">
 

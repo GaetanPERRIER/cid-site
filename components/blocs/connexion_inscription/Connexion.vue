@@ -37,7 +37,8 @@ export default{
             const url = "https://cidapi.alwaysdata.net/connexion/";
             try {
                 const response = await axios.post(url, this.formData)
-                console.log(response)
+                localStorage.setItem("access_token", response.data.access_token)
+                localStorage.setItem("refresh_token", response.data.refresh_token)
             } catch (error) {
                 console.error('Erreur lors de la soumission du formulaire :', error);
             }
