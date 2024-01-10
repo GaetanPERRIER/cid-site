@@ -11,7 +11,7 @@
         </div>
         <div class="menu-profil u-flex u-flex-direction-column">
             <NuxtLink to="/connexion" class="bouton-menu">Connexion</NuxtLink>
-            <NuxtLink to="/" class="bouton-menu">Créer un compte</NuxtLink>
+            <NuxtLink to="/creation-compte" class="bouton-menu">Créer un compte</NuxtLink>
             <NuxtLink to="/" class="bouton-menu">Mon compte</NuxtLink>
             <NuxtLink to="/ajout-image" class="bouton-menu">Publier une image</NuxtLink>
             <NuxtLink to="/ajout-event" class="bouton-menu">Publier un évenement</NuxtLink>

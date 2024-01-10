@@ -86,7 +86,7 @@ export default {
             const url = "https://cidapi.alwaysdata.net/get_csrf";
             try{
                 const res = await axios.get(url);
-                console.log(res)
+                console.log(res.data)
             }catch(error){
             console.log("Prout error :", error);
             }   

@@ -85,16 +85,7 @@
 
 
 <script>
-import axios from 'axios'
 export default{
-    data(){
-        return{
-            formData: {
-                Login : "",
-                Mdp:"",
-            }
-        }
-    },
 
     mounted(){
 
@@ -102,16 +93,7 @@ export default{
     },
 
     methods: {
-        async postConnexion() {
-            const url = "https://cidapi.alwaysdata.net/connexion/";
-            try {
-                const response = await axios.post(url, this.formData)
-                console.log(response)
-            } catch (error) {
-                console.error('Erreur lors de la soumission du formulaire :', error);
-            }
-        }
-
+        
     }
 }
 

@@ -8,6 +8,9 @@
 
 export default function ({ $axios, store, router, req }, inject) {
   // https://stackoverflow.com/a/15724300
+  $axios.defaults.xsrfHeaderName = 'x-csrftoken'
+  $axios.defaults.xsrfCookieName = 'csrfToken'
+  $axios.defaults.withCredentials = true
   function getCookie(name) {
     const value = `; ${document.cookie}`
     const parts = value.split(`; ${name}=`)

@@ -1,6 +1,6 @@
 <template>
     <form action="https://cidapi.alwaysdata.net/post_evenement/" method="post" enctype="multipart/form-data"> 
-        <section class="u-flex u-flex-direction-column u-align-items-center u-gap30 u-mt50 u-mb100">
+        <section class="u-flex u-flex-direction-column u-align-items-center u-gap30  add-event">
             <h2 class="fs40px">Ajouter un évenement</h2>
             <div class="u-flex u-justify-content-center u-align-items-center u-gap25 w80">
                 <div class="w50">
