@@ -61,8 +61,8 @@ export default {
 
     
     .form-content{
-        border: 1px solid black;
-        border-radius: 2px;
+        box-shadow: 0 0 15px $color-dusky-blue;
+        border-radius: 10px;
 
 
         textarea{

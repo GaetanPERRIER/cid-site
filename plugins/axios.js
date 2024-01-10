@@ -14,6 +14,7 @@ export default function ({ $axios, store, router, req }, inject) {
     if (parts.length === 2) return parts.pop().split(';').shift()
   }
   const apiCall = $axios.create()
+  $axios.defaults.withCredentials = true
 
   apiCall.interceptors.request.use(
     (config) => {

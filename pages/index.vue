@@ -27,12 +27,13 @@
         <h2 class="fs30px u-m20">Actualités</h2>
 
         <Actu :data="this.apiData"/>
-
-        <NuxtLink to="/connexion">ConnexionTemp</NuxtLink>
     </main>
 </template>
 
-<script >   
+<script >
+import axios from 'axios';
+
+   
 
 
 
@@ -52,6 +53,7 @@ export default {
     mounted() {
         this.attachClickEvent();
         this.asyncData();
+        this.fetchCookie();
     },
     methods: {        
         attachClickEvent() {
@@ -78,7 +80,18 @@ export default {
         }catch(error){
             console.error('Erreur de récupération des données :', error);
         }
-    },     
+    },   
+    
+        async fetchCookie(){
+            const url = "https://cidapi.alwaysdata.net/get_csrf";
+            try{
+                const res = await axios.get(url);
+                console.log(res)
+            }catch(error){
+            console.log("Prout error :", error);
+            }   
+        }
+
     },
     
 }
