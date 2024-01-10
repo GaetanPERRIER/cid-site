@@ -41,9 +41,9 @@
             </div>
 
 
-            <p>Déja un compte ? <NuxtLink class="create-account" to="/">Connexion-vous</NuxtLink></p>
+            <p>Déja un compte ? <NuxtLink class="create-account" to="/">Connectez-vous</NuxtLink></p>
 
-            <input class="bouton-submit u-plr15 u-pt10 u-pb10" type="submit" value="Connexion">
+            <input class="bouton-submit u-plr15 u-pt10 u-pb10" type="submit" value="Créer un compte">
 
             
 
@@ -105,6 +105,7 @@ export default{
         width: fit-content;
         height: fit-content;
         border: none;
+        font-size: 15px;
         background-color: $color-dusky-blue;
         color: white;
         border-radius: 10px;

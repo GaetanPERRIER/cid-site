@@ -13,7 +13,7 @@
                 <input type="password" v-model="formData.Mdp"  id="Mdp" name="Mdp">
             </div>
 
-            <NuxtLink to="/" class="forgot-password">Mot de passe oublié ?</NuxtLink>
+            <NuxtLink to="/forgot-passwordS" class="forgot-password">Mot de passe oublié ?</NuxtLink>
 
             <input class="bouton-submit u-plr15 u-pt10 u-pb10" type="submit" value="Connexion">
 
@@ -54,6 +54,7 @@
     .bouton-submit{
         width: fit-content;
         height: fit-content;
+        font-size: 15px;
         border: none;
         background-color: $color-dusky-blue;
         color: white;
@@ -85,7 +86,9 @@
 
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
+import CryptoJS from 'crypto-js';
+
 export default{
     data(){
         return{
@@ -104,12 +107,19 @@ export default{
     methods: {
         async postConnexion() {
             const url = "https://cidapi.alwaysdata.net/connexion/";
+            const hashedPassword = this.hashPassword(this.formData.Mdp).toString();
+            const dataToSend = {Login: this.formData.Login, Mdp : hashedPassword}
+            console.log(dataToSend)
             try {
-                const response = await axios.post(url, this.formData)
+                const response = await axios.post(url, dataToSend)
                 console.log(response)
             } catch (error) {
                 console.error('Erreur lors de la soumission du formulaire :', error);
             }
+        },
+
+        hashPassword(Mdp){
+            return CryptoJS.SHA256(Mdp).toString();
         }
 
     }

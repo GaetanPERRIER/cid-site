@@ -1,21 +1,3 @@
-<script>
-export default {
-    name: 'Formulaire',
-    components: {},
-    data() {
-        return {
-            isClicked: false
-        }
-    },
-    mounted() {
-
-    },
-    methods: {
-
-    }
-}
-</script>
-
 <template>
     <section class="u-flex u-justify-content-center u-mt100 u-mb100">
         <div class="form-content u-flex u-flex-direction-column u-align-items-center w25 u-p30">
@@ -59,53 +41,58 @@ export default {
 
 <style lang="scss">
 
+.form-content{
+    box-shadow: 0 0 15px $color-dusky-blue;
+    border-radius: 10px;
+
+
+    textarea{
+        resize: none;
+        width: 100%;
+        height: 120px;
+        margin: 10px 0;
+    }
     
-    .form-content{
-        box-shadow: 0 0 15px $color-dusky-blue;
-        border-radius: 10px;
+    input[type="radio"] {
+        display: none;
+    }
 
+    input[type="radio"]+label {
+        color: black;
+        padding: 5px;
+        border: 1px solid black;
+        border-radius: 2px;
+        cursor: pointer;
+    }
 
-        textarea{
-            resize: none;
-            width: 100%;
-            height: 120px;
-            margin: 10px 0;
-        }
-        
-        input[type="radio"] {
-            display: none;
-        }
-    
-        input[type="radio"]+label {
-            color: black;
-            padding: 5px;
-            border: 1px solid black;
-            border-radius: 2px;
-            cursor: pointer;
-        }
-    
-        input[type="radio"]:checked+label, input[type="radio"]:hover+label {
-            background-color: $color-dusky-blue;
-            color: white;
-            transition: all ease-in-out 250ms;
-
-        }
-
-
-        .input-message{
-            text-align: start;
-        }
-
-
+    input[type="radio"]:checked+label, input[type="radio"]:hover+label {
+        background-color: $color-dusky-blue;
+        color: white;
+        transition: all ease-in-out 250ms;
 
     }
 
 
-    
-    
-    
-
-    
-
-   
+    .input-message{
+        text-align: start;
+    }
+}
 </style>
+
+<script>
+export default {
+    name: 'Formulaire',
+    components: {},
+    data() {
+        return {
+            isClicked: false
+        }
+    },
+    mounted() {
+
+    },
+    methods: {
+
+    }
+}
+</script>
