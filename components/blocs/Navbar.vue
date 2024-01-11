@@ -69,6 +69,7 @@ nav{
         text-decoration: none;
     }
     .menu-profil{
+        z-index: 100;
         display: none;
         position: absolute;
         top: 100%;
