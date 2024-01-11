@@ -31,11 +31,6 @@
 </template>
 
 <script >
-import axios from 'axios';
-
-   
-
-
 
 export default {
     components:{
@@ -53,7 +48,6 @@ export default {
     mounted() {
         this.attachClickEvent();
         this.asyncData();
-        this.fetchCookie();
     },
     methods: {        
         attachClickEvent() {
@@ -80,18 +74,7 @@ export default {
         }catch(error){
             console.error('Erreur de récupération des données :', error);
         }
-    },   
-    
-        async fetchCookie(){
-            const url = "https://cidapi.alwaysdata.net/get_csrf";
-            try{
-                const res = await axios.get(url);
-                console.log(res.data)
-            }catch(error){
-            console.log("Prout error :", error);
-            }   
-        }
-
+        },   
     },
     
 }

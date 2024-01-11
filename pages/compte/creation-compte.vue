@@ -6,8 +6,6 @@
 
 
 <script>
-import CreationCompte from "@/components/blocs/connexion_inscription/CreationCompte.vue";
-
 
 export default{
 
@@ -16,7 +14,8 @@ export default{
         }
     },
     components:{
-        CreationCompte,
+        CreationCompte:() => import('@/components/blocs/connexion_inscription/CreationCompte.vue'),
+
     },
 
     mounted(){

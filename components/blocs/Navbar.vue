@@ -4,19 +4,20 @@
             <NuxtLink to="/"><img class="w35px " src="../../assets/imgs/imgs-navbars/logo_CID.png" alt="Logo CID"></NuxtLink>
             <NuxtLink to="/contact">Nous contacter</NuxtLink>
             <NuxtLink to="/about">A propos</NuxtLink>
-            <NuxtLink to="/galerie">Galerie</NuxtLink>  
+            <NuxtLink to="/galerie/galerie">Galerie</NuxtLink>  
         </div>
         <div class="u-flex u-align-items-center u-gap50">
             <a href="#"><img class="icon-profil w40px" src="../../assets/imgs/imgs-navbars/logo_compte.png" alt="Logo mon compte"></a>
         </div>
         <div class="menu-profil u-flex u-flex-direction-column">
-            <NuxtLink to="/connexion" class="bouton-menu">Connexion</NuxtLink>
-            <NuxtLink to="/creation-compte" class="bouton-menu">Créer un compte</NuxtLink>
+            <NuxtLink to="/compte/connexion" class="bouton-menu">Connexion</NuxtLink>
+            <NuxtLink to="/compte/creation-compte" class="bouton-menu">Créer un compte</NuxtLink>
             <NuxtLink to="/" class="bouton-menu">Mon compte</NuxtLink>
-            <NuxtLink to="/ajout-image" class="bouton-menu">Publier une image</NuxtLink>
-            <NuxtLink to="/ajout-event" class="bouton-menu">Publier un évenement</NuxtLink>
-            <NuxtLink to="/" class="bouton-menu admin">Demandes</NuxtLink>
-            <NuxtLink to="/" class="bouton-menu admin">Comptes</NuxtLink>
+            <NuxtLink to="/galerie/ajout-image" class="bouton-menu">Publier une image</NuxtLink>
+            <NuxtLink to="/galerie/ajout-event" class="bouton-menu">Publier un évenement</NuxtLink>
+            <NuxtLink to="/admin/admin" class="bouton-menu admin">Admin</NuxtLink>
+
+            
         </div> 
 
     </nav>
@@ -88,7 +89,7 @@ nav{
             background-color: $color-yellow-sand;
         }
         .admin{
-            display: none;
+            display: block;
         }
     }
     .menu-visible{

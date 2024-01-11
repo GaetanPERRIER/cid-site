@@ -6,7 +6,6 @@
 
 
 <script>
-import ForgotPassword from "@/components/blocs/connexion_inscription/ForgotPassword.vue";
 
 
 export default{
@@ -16,7 +15,7 @@ export default{
         }
     },
     components:{
-        ForgotPassword,
+        ForgotPassword:() => import("@/components/blocs/connexion_inscription/ForgotPassword.vue"),
     },
 
     mounted(){

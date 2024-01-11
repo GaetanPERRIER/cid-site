@@ -67,7 +67,8 @@ export default {
                 Lieu_Photo:'',
                 Date_Photo: '',
                 ID_Theme:'',
-            }
+            },
+            token: null
         }
     },
 
@@ -78,6 +79,7 @@ export default {
     },
     mounted() {
         this.displayImg();
+        this.fetchCookie()
     },
 
     methods: {
@@ -90,9 +92,8 @@ export default {
             try {
                 const response = await axios.post(url, this.formData, {
                     headers: {
-                        //'Authorization' : 'Bearer ' + localStorage.getItem("access_token"),
-                        'Authorization' : `Bearer ${localStorage.getItem("access_token")}`,
-
+                        "Content-Type" : "multipart/form-data",
+                        'Authorization' : `Token ${this.token}`
                     },
                 });
                 console.log('Réponse du serveur :', response.data);
@@ -116,8 +117,14 @@ export default {
                 };
                 reader.readAsDataURL(file);
             })
-        }
+        },
 
+
+
+        async fetchCookie() {
+            const cookie = document.cookie.split("=")
+            this.token = cookie[1]
+        },
     },
 };
 </script>
@@ -131,7 +138,7 @@ export default {
     
     box-shadow: 0 0 15px $color-dusky-blue;
 
-        #Photo{
+    #Photo{
         display: none;
     }
 

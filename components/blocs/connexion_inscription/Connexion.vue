@@ -1,23 +1,23 @@
 <template>
     <section class="u-flex u-justify-content-center u-mt100 u-mb100 ">
         <form @submit.prevent="postConnexion" class="form-connexion u-flex u-flex-direction-column u-align-items-center w40  u-gap20 u-p50" >
-            <h2 class="fs30px u-mb15 u-mt15">Se connecter</h2>
+            <h2 class="fs30px u-mb15">Se connecter</h2>
 
             <div class="u-flex u-flex-direction-column u-align-items-center">
                 <label for="Login">Identifiant :</label>
-                <input type="text" v-model="formData.Login" id="Login" name="Login">
+                <input type="text" v-model="formData.Login" id="Login" name="Login" required>
             </div>
 
             <div class="u-flex u-flex-direction-column">
                 <label for="Mdp">Mot de passe :</label>
-                <input type="password" v-model="formData.Mdp"  id="Mdp" name="Mdp">
+                <input type="password" v-model="formData.Mdp"  id="Mdp" name="Mdp" required>
             </div>
 
-            <NuxtLink to="/forgot-passwordS" class="forgot-password">Mot de passe oublié ?</NuxtLink>
+            <NuxtLink to="/forgot-password" class="forgot-password">Mot de passe oublié ?</NuxtLink>
 
             <input class="bouton-submit u-plr15 u-pt10 u-pb10" type="submit" value="Connexion">
 
-            <p>Vous n'avez pas de compte ? <NuxtLink class="create-account" to="/">Créez un compte</NuxtLink></p>
+            <p>Vous n'avez pas de compte ? <NuxtLink class="create-account" to="/creation-compte">Créez un compte</NuxtLink></p>
 
         </form>
     </section>
@@ -100,7 +100,6 @@ export default{
     },
 
     mounted(){
-
        
     },
 
@@ -109,10 +108,16 @@ export default{
             const url = "https://cidapi.alwaysdata.net/connexion/";
             const hashedPassword = this.hashPassword(this.formData.Mdp).toString();
             const dataToSend = {Login: this.formData.Login, Mdp : hashedPassword}
-            console.log(dataToSend)
             try {
-                const response = await axios.post(url, dataToSend)
+                const response = await axios.post(url, dataToSend ,{withCredentials : true})
                 console.log(response)
+
+                var expirationDate = new Date();
+                expirationDate.setTime(expirationDate.getTime() + (2 * 60 * 60 * 1000)); 
+                
+                const token = response.data.token
+                document.cookie = `Token= ${token}; path=/; expires=${expirationDate.toUTCString()}; secure; SameSite=Strict`;
+
             } catch (error) {
                 console.error('Erreur lors de la soumission du formulaire :', error);
             }
@@ -120,8 +125,7 @@ export default{
 
         hashPassword(Mdp){
             return CryptoJS.SHA256(Mdp).toString();
-        }
-
+        },
     }
 }
 

@@ -6,11 +6,10 @@
 
 
 <script>
-import Formulaire from "@/components/blocs/contact/Formulaire.vue";
 
 export default{
     components:{
-        Formulaire,
+        Formulaire:() => import('@/components/blocs/contact/Formulaire.vue'),
     },
 
     mounted(){

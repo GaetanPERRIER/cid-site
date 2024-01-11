@@ -6,8 +6,6 @@
 
 
 <script>
-import Connexion from "@/components/blocs/connexion_inscription/Connexion.vue";
-
 
 export default{
 
@@ -16,7 +14,7 @@ export default{
         }
     },
     components:{
-        Connexion,
+        Connexion:() => import('@/components/blocs/connexion_inscription/Connexion.vue'),
     },
 
     mounted(){
