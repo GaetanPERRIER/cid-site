@@ -1,14 +1,15 @@
 <template>
-    <main>
-        <DemandesComptes :data="this.apiData" @boutonClicked="RefetchOnClick"/>
-    </main>
+    <MonCompte :data = "this.apiData"/>
 </template>
+
+<style lang="scss">
+
+
+</style>
+
 
 
 <script>
-
-
-
 export default{
     data(){
         return {
@@ -16,18 +17,20 @@ export default{
             token: ""
         }
     },
+
     components:{
-        DemandesComptes:() => import('@/components/blocs/comptes/Demandes.vue'),
+        MonCompte:() => import('@/components/blocs/comptes/MonCompte.vue'),
     },
+
 
     mounted(){
         this.fetchCookie()
-        this.FetchDemandesComptes()
+        this.fetchInfos()
     },
 
     methods:{
-        async FetchDemandesComptes(){
-            const url ="https://cidapi.alwaysdata.net/get_etudiants/?validation=False";
+        async fetchInfos(){
+            const url ="https://cidapi.alwaysdata.net/mon_compte/"
             const requestOptions = {
                 methods : "GET",
                 headers : {
@@ -36,20 +39,15 @@ export default{
                 },
                 credentials : "include"
             }
-            try {
+            try{
                 const response = await fetch(url, requestOptions)
-                this.apiData = await response.json();
                 console.log(response)
-            } catch (error) {
+                this.apiData = await response.json()
+                
+            }catch(error){
                 console.error('Erreur de récupération des données :', error);
-
-            }            
+            }
         },
-
-        RefetchOnClick(){
-            this.FetchDemandesComptes()
-        },
-
 
         async fetchCookie() {
             const cookie = document.cookie.split("=")

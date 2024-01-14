@@ -1,5 +1,5 @@
 <template>
-    <form action="https://cidapi.alwaysdata.net/post_evenement/" method="post" enctype="multipart/form-data"> 
+    <form @submit.prevent="postEvent"  enctype="multipart/form-data"> 
         <section class="u-flex u-flex-direction-column u-align-items-center u-gap30  add-event">
             <h2 class="fs40px">Ajouter un évenement</h2>
             <div class="u-flex u-justify-content-center u-align-items-center u-gap25 w80">
@@ -17,27 +17,27 @@
                 <div class="input-container-event u-flex u-flex-direction-column u-justify-content-evenly w50">
                     <div>
                         <label for="Titre">Nom de l'évenement</label>
-                        <input type="text" id="Titre" name="Titre" required>
+                        <input type="text" v-model="formData.Titre" id="Titre" name="Titre" required>
                     </div>
 
                     <div class="u-flex u-flex-direction-column">
                         <label for="Texte">Description</label>
-                        <textarea name="Texte" id="Texte"></textarea>
+                        <textarea name="Texte" v-model="formData.Texte" id="Texte"></textarea>
                     </div>
 
                     <div>
                         <label for="Date_Eve">Date</label>
-                        <input type="date" id="Date_Eve" name="Date_Eve">
+                        <input type="date" v-model="formData.Date_Eve" id="Date_Eve" name="Date_Eve">
                     </div>
 
                     <div>
                         <label for="Lieu_Eve">Lieu</label>
-                        <input type="text" id="Lieu_Eve" name="Lieu_Eve">
+                        <input type="text" v-model="formData.Lieu_Eve" id="Lieu_Eve" name="Lieu_Eve">
                     </div>
 
                     <div>
                         <label for="ID_Theme">Theme</label>
-                        <select name="ID_Theme" id="ID_Theme">
+                        <select name="ID_Theme" v-model="formData.ID_Theme" id="ID_Theme">
                             <option v-for="item in data" :key="item.ID_Theme" :value="item.ID_Theme">{{ item.Nom_Theme }}</option>
                         </select>
                     </div>
@@ -50,13 +50,31 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
+    
     props: {
         data:{
             type : Object
         }
     },
+
+    data(){
+        return{
+            formData:{
+                Photo: null,
+                Titre: '',
+                Texte:'',
+                Date_Eve:'',
+                Lieu_Eve:'',
+                ID_Theme:'',
+            },
+            token: null
+        }
+    },
+
     mounted() {
+        this.fetchCookie()
         this.displayImg();
     },
 
@@ -78,7 +96,27 @@ export default {
 
                 reader.readAsDataURL(file);
             })
-        }
+        },
+
+        async postEvent() {
+            const url ="https://cidapi.alwaysdata.net/post_evenement/";
+            try {
+                const response = await axios.post(url, this.formData, {
+                    headers: {
+                        "Content-Type" : "multipart/form-data",
+                        'Authorization' : `Token ${this.token}`
+                    },
+                });
+                console.log('Réponse du serveur :', response.data);
+            } catch (error) {
+                console.error('Erreur lors de la soumission du formulaire :', error);
+            }
+        },
+
+        async fetchCookie() {
+            const cookie = document.cookie.split("=")
+            this.token = cookie[1]
+        },
     },
 };
 </script>

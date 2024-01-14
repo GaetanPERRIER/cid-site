@@ -23,3 +23,16 @@
         }
 }
 </style>
+
+<script>
+
+export default{
+    mounted(){
+
+    },
+
+    methods(){
+        
+    }
+}
+</script>

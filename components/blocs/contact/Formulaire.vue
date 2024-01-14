@@ -32,7 +32,7 @@
                     <textarea rows="4" cols="50" name="message" form="form-contact"></textarea>
                 </div>
 
-                <input class="bouton-publier w25 h30px" type="submit" value="Envoyer">
+                <input class="bouton-publier" type="submit" value="Envoyer">
             </form>
             
         </div>
@@ -75,6 +75,23 @@
 
     .input-message{
         text-align: start;
+    }
+
+    .bouton-publier{
+        width: fit-content;
+        height:fit-content;
+        background-color: $color-dusky-blue;
+        border: 1px solid white;
+        color: white;
+        border-radius: 10px;
+        padding: 10px 30px;
+        font-size: 15px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all ease-in-out 300ms;
+    }
+    .bouton-publier:hover{
+        background-color:$color-rhino-blue;
     }
 }
 </style>

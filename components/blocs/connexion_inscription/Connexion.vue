@@ -13,11 +13,15 @@
                 <input type="password" v-model="formData.Mdp"  id="Mdp" name="Mdp" required>
             </div>
 
-            <NuxtLink to="/forgot-password" class="forgot-password">Mot de passe oublié ?</NuxtLink>
+            <p class="connexion-error">Identifiant ou mot de passe invalide</p>
+
+            <NuxtLink to="/compte/forgot-password" class="forgot-password">Mot de passe oublié ?</NuxtLink>
 
             <input class="bouton-submit u-plr15 u-pt10 u-pb10" type="submit" value="Connexion">
 
-            <p>Vous n'avez pas de compte ? <NuxtLink class="create-account" to="/creation-compte">Créez un compte</NuxtLink></p>
+            
+
+            <p>Vous n'avez pas de compte ? <NuxtLink class="create-account" to="/compte/creation-compte">Créez un compte</NuxtLink></p>
 
         </form>
     </section>
@@ -78,6 +82,14 @@
             color: $color-yellow-dark;
         }
     }
+
+    .connexion-error{
+        color: red;
+        display: none;
+        font-style: italic;
+        font-size: 10px;
+        transform: translateY(-15px);
+    }
     
 
 }
@@ -105,21 +117,23 @@ export default{
 
     methods: {
         async postConnexion() {
+            const connexionError = document.querySelector(".connexion-error")
             const url = "https://cidapi.alwaysdata.net/connexion/";
             const hashedPassword = this.hashPassword(this.formData.Mdp).toString();
             const dataToSend = {Login: this.formData.Login, Mdp : hashedPassword}
             try {
                 const response = await axios.post(url, dataToSend ,{withCredentials : true})
-                console.log(response)
 
                 var expirationDate = new Date();
                 expirationDate.setTime(expirationDate.getTime() + (2 * 60 * 60 * 1000)); 
                 
                 const token = response.data.token
                 document.cookie = `Token= ${token}; path=/; expires=${expirationDate.toUTCString()}; secure; SameSite=Strict`;
+                this.$router.push('/');
 
             } catch (error) {
                 console.error('Erreur lors de la soumission du formulaire :', error);
+                connexionError.style.display = "block"
             }
         },
 

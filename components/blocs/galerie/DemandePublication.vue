@@ -149,10 +149,11 @@ export default {
             decision.forEach(button => {
                 button.addEventListener('click', () =>{
                     if(button.classList.contains("accept")){
-                        this.postValiderEtudiant(button.id, 1)
+                        console.log('acc')
+                        this.postValiderPublication(button.id, 1)
                     }
                     else{
-                        this.postValiderEtudiant(button.id,0)
+                        this.postValiderPublication(button.id,0)
                     }
                     this.handleClick()
                 })
@@ -161,7 +162,7 @@ export default {
 
         },
 
-        async postValiderEtudiant(ID, choix){
+        async postValiderPublication(ID, choix){
             const urlA = "https://cidapi.alwaysdata.net/valider_etudiant/";
             const urlR = "https://cidapi.alwaysdata.net/rejeter_compte/";
             const dataToSend = {

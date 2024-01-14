@@ -67,7 +67,7 @@ export default {
             });
         },   
         async asyncData(){
-        const url = "https://cidapi.alwaysdata.net/get_evenement/6";
+        const url = "https://cidapi.alwaysdata.net/get_images_events?nb_items=6&validation=True&event=True&photo=False";
         try{
             const res = await fetch(url);
             this.apiData = await res.json();

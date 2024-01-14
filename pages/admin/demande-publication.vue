@@ -1,6 +1,6 @@
 <template>
     <main>
-        <DemandesComptes :data="this.apiData" @boutonClicked="RefetchOnClick"/>
+        <DemandesPublication :data="this.apiData" @boutonClicked="RefetchOnClick"/>
     </main>
 </template>
 
@@ -17,17 +17,17 @@ export default{
         }
     },
     components:{
-        DemandesComptes:() => import('@/components/blocs/comptes/Demandes.vue'),
+        DemandesPublication:() => import('@/components/blocs/galerie/DemandePublication.vue'),
     },
 
     mounted(){
         this.fetchCookie()
-        this.FetchDemandesComptes()
+        this.FetchDemandesPublication()
     },
 
     methods:{
-        async FetchDemandesComptes(){
-            const url ="https://cidapi.alwaysdata.net/get_etudiants/?validation=False";
+        async FetchDemandesPublication(){
+            const url ="https://cidapi.alwaysdata.net/get_images_events?nb_items=6&validation=True&event=True&photo=False";
             const requestOptions = {
                 methods : "GET",
                 headers : {
@@ -47,7 +47,7 @@ export default{
         },
 
         RefetchOnClick(){
-            this.FetchDemandesComptes()
+            this.FetchDemandesPublication()
         },
 
 
