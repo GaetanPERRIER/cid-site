@@ -48,9 +48,9 @@ export default {
             </div>
             <div class="u-flex u-flex-direction-column u-gap10">
                 <h5>Informations</h5>
-                <a href=""><img src="" alt="Logo Linkedin"></a>
-                <a href=""><img src="" alt="Logo X"></a>
-                <a href=""><img src="" alt="Logo Facebook"></a>
+                <a href=""><img src="../../static/images/logo/linkedin.png" alt="Logo Linkedin"></a>
+                <a href=""><img src="../../static/images/logo/x.jpg" alt="Logo X"></a>
+                <a href=""><img src="../../static/images/logo/facebook.webp" alt="Logo Facebook"></a>
                 
             </div>
         </div>
@@ -61,9 +61,13 @@ export default {
     footer{
         background-color: $color-dusky-blue;
         a{
+            
             text-decoration: none;
             color: white;
             font-size: 15px;
+            img{
+                width: 25px;
+            }
         }
         h5{
             font-size: 15px;
