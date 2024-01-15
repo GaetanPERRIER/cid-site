@@ -1,6 +1,6 @@
 <template>
     <main>
-        <Galerie :data = "this.apiData" :pages = "this.nb_pages" :page = "this.page" @change-page="changePage" @boutonClicked="RefetchOnClick"/>
+        <Galerie :data = "this.apiData" :pages = "this.nb_pages" :page = "this.page" @change-page="changePage" @boutonClicked="RefetchOnClick" @dataFiltres="RefetchWithFilters"/>
         <div class="pagination-buttons-container u-flex u-justify-content-center u-align-items-center u-gap50 u-mb50">
             <button class="pagination-buttons" @click="changePage(1)">Première page</button>
             <button class="pagination-buttons numero-page" v-for="pageNumber in visiblePageNumbers" :key="pageNumber" :id="pageNumber" @click="changePage(pageNumber)">
@@ -21,6 +21,15 @@ export default {
             apiData: {},  
             nb_pages: 0,
             page: 1,
+
+            Filtres: {
+                Event: "True",
+                Photo:"True",
+                Titre:"",
+                Lieu:"",
+                Date:"",
+                Tri:"True",
+            }
         }
     },
 
@@ -42,10 +51,8 @@ export default {
             const url = `https://cidapi.alwaysdata.net/get_images_events?event=${event}&photo=${photo}&page=${this.page}&nb_items=16&titre=${titre}&lieu=${lieu}&date=${date}&tri=${tri}`
             try {
                 const res = await fetch(url);
-               
                 this.apiData = await res.json();
                 this.nb_pages = this.apiData.count;
-                console.log(this.apiData)
             }catch (error){
                 console.error('Erreur de récupération des données :' ,error);
             }
@@ -53,12 +60,17 @@ export default {
 
         async changePage(newPage) {
             this.page = newPage;
-            this.fetchGalerie("True","True" ,"","","","True");
+            this.fetchGalerie(this.Filtres.Event,this.Filtres.Photo,this.Filtres.Titre,this.Filtres.Lieu, this.Filtres.Date, this.Filtres.Tri)
             this.ColorPageNumber(this.page)
         },
 
         async RefetchOnClick(){
+            
+        },
 
+        async RefetchWithFilters(dataFiltres){
+            this.Filtres = dataFiltres
+            this.fetchGalerie(this.Filtres.Event,this.Filtres.Photo,this.Filtres.Titre,this.Filtres.Lieu, this.Filtres.Date, this.Filtres.Tri)
         },
 
         ColorPageNumber(activePage){
@@ -66,7 +78,6 @@ export default {
             
             numeros.forEach(el => {
                 if(el.id === `${activePage}`){
-                    console.log(el.id)
                     el.style.backgroundColor = "#405B8F"
                     el.style.color = "white"
                 }

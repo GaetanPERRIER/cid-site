@@ -1,7 +1,7 @@
 <template>
-    <section class=" demandes-comptes u-m50">
-        <div v-if="Object.keys(data).length === 0 ">AUCUNE DEMANDES {{ Object.keys(data).length}}</div>
-        <div v-if="Object.keys(data).length > 0" class="test u-flex u-flex-direction-column u-noselect u-gap20">
+    <section class=" demandes-comptes u-m50 u-mb750">
+        <div v-if="Object.keys(data).length === 0 ">AUCUNE DEMANDES </div>
+        <div v-if="Object.keys(data).length > 0" class="test u-flex u-flex-direction-column u-noselect u-gap20 ">
             <div v-for="item in data" :key="item.ID_Etud" class="liste-container">
                 <div class="u-flex u-justify-content-between u-align-items-center u-plr15 top-side">
                     <p>{{item.Nom }} {{ item.Prenom }}</p>
@@ -155,6 +155,7 @@ export default {
                         this.postValiderEtudiant(button.id,0)
                     }
                     this.handleClick()
+                    this.displayListes()
                 })
             })
 
@@ -177,9 +178,8 @@ export default {
                         },
                         withCredentials: true
                     }, {
-
+                        
                     });
-                    console.log(response)
                 } catch (error) {
                     console.error("Erreur dans l'envoi des données :", error);
                 }
@@ -196,7 +196,6 @@ export default {
                     }, {
 
                     });
-                    console.log(response)
                 } catch (error) {
                     console.error("Erreur dans l'envoi des données :", error);
                 }

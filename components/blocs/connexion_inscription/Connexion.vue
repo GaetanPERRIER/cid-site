@@ -130,6 +130,7 @@ export default{
                 const token = response.data.token
                 document.cookie = `Token= ${token}; path=/; expires=${expirationDate.toUTCString()}; secure; SameSite=Strict`;
                 this.$router.push('/');
+                
 
             } catch (error) {
                 console.error('Erreur lors de la soumission du formulaire :', error);

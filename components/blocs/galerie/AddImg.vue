@@ -27,12 +27,12 @@
 
                     <div>
                         <label for="Photographe">Photographe</label>
-                        <input type="text" v-model="formData.Photographe" id="Photographe" name="Photographe">
+                        <input type="text" v-model="formData.Photographe" id="Photographe" name="Photographe" required>
                     </div>
 
                     <div>
                         <label for="Lieu_photo">Lieu</label>
-                        <input type="text" v-model="formData.Lieu_Photo" id="Lieu_Photo" name="Lieu_Photo">
+                        <input type="text" v-model="formData.Lieu_Photo" id="Lieu_Photo" name="Lieu_Photo" required>
                     </div>
 
                     <div>
@@ -42,7 +42,7 @@
 
                     <div>
                         <label for="ID_Theme">Theme</label>
-                        <select name="ID_Theme" v-model="formData.ID_Theme" id="ID_Theme">
+                        <select name="ID_Theme" v-model="formData.ID_Theme" id="ID_Theme" required>
                             <option v-for="item in data" :key="item.ID_Theme" :value="item.ID_Theme">{{ item.Nom_Theme }}</option>
                         </select>
                     </div>
@@ -50,6 +50,13 @@
             </div>
 
             <input class="bouton-publier" type="submit" name="submit-button" value="Publier ">
+            <div class="popup-container">
+                <div class="popup u-flex u-flex-direction-column u-align-items-center u-justify-content-center u-p25">
+                    <img class="cross" src="../../../static/images/cross.png" alt="">
+                    <p>Votre demande de publication à bien été envoyé !</p>
+                    <p>Elle sera publiée une fois qu'un administrateur l'aura acceptée</p>
+                </div>
+            </div>  
         </section>
     </form>
 </template>
@@ -97,6 +104,7 @@ export default {
                     },
                 });
                 console.log('Réponse du serveur :', response.data);
+                this.displayPopUp()
             } catch (error) {
                 console.error('Erreur lors de la soumission du formulaire :', error);
             }
@@ -116,6 +124,19 @@ export default {
                     imagePreview.style.display = 'block';
                 };
                 reader.readAsDataURL(file);
+            })
+        },
+
+        async displayPopUp(){
+            const popup = document.querySelector(".popup-container")
+            const cross = document.querySelector(".cross")
+
+            popup.style.opacity = "100%"
+            popup.style.zIndex = 10
+            cross.addEventListener("click", () => {
+                popup.style.opacity = 0
+                popup.style.zIndex = -1
+                this.$router.push('/');
             })
         },
 

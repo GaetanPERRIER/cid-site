@@ -11,7 +11,7 @@
                             <p>Format accepté : PNG,JPEG,WEBP (max : 100Ko)</p>
                         </div>
                     </label>
-                    <input type="file" id="Photo" name="Photo"  required>
+                    <input type="file" id="Photo" name="Photo" @change="handleFileChange" required>
                 </div>
  
                 <div class="input-container-event u-flex u-flex-direction-column u-justify-content-evenly w50">
@@ -22,22 +22,22 @@
 
                     <div class="u-flex u-flex-direction-column">
                         <label for="Texte">Description</label>
-                        <textarea name="Texte" v-model="formData.Texte" id="Texte"></textarea>
+                        <textarea name="Texte" v-model="formData.Texte" id="Texte" required></textarea>
                     </div>
 
                     <div>
                         <label for="Date_Eve">Date</label>
-                        <input type="date" v-model="formData.Date_Eve" id="Date_Eve" name="Date_Eve">
+                        <input type="date" v-model="formData.Date_Eve" id="Date_Eve" name="Date_Eve" required>
                     </div>
 
                     <div>
                         <label for="Lieu_Eve">Lieu</label>
-                        <input type="text" v-model="formData.Lieu_Eve" id="Lieu_Eve" name="Lieu_Eve">
+                        <input type="text" v-model="formData.Lieu_Eve" id="Lieu_Eve" name="Lieu_Eve" required>
                     </div>
 
                     <div>
                         <label for="ID_Theme">Theme</label>
-                        <select name="ID_Theme" v-model="formData.ID_Theme" id="ID_Theme">
+                        <select name="ID_Theme" v-model="formData.ID_Theme" id="ID_Theme" required>
                             <option v-for="item in data" :key="item.ID_Theme" :value="item.ID_Theme">{{ item.Nom_Theme }}</option>
                         </select>
                     </div>
@@ -45,6 +45,13 @@
             </div>
 
             <input class="bouton-publier" type="submit" name="submit-button" value="Publier ">
+            <div class="popup-container">
+                <div class="popup u-flex u-flex-direction-column u-align-items-center u-justify-content-center u-p25">
+                    <img class="cross" src="../../../static/images/cross.png" alt="">
+                    <p>Votre demande de publication à bien été envoyé !</p>
+                    <p>Elle sera publiée une fois qu'un administrateur l'aura acceptée</p>
+                </div>
+            </div>  
         </section>
     </form>
 </template>
@@ -98,6 +105,19 @@ export default {
             })
         },
 
+        async displayPopUp(){
+            const popup = document.querySelector(".popup-container")
+            const cross = document.querySelector(".cross")
+
+            popup.style.opacity = "100%"
+            popup.style.zIndex = 10
+            cross.addEventListener("click", () => {
+                popup.style.opacity = 0
+                popup.style.zIndex = -1
+                this.$router.push('/');
+            })
+        },
+
         async postEvent() {
             const url ="https://cidapi.alwaysdata.net/post_evenement/";
             try {
@@ -107,7 +127,8 @@ export default {
                         'Authorization' : `Token ${this.token}`
                     },
                 });
-                console.log('Réponse du serveur :', response.data);
+                console.log('Réponse du serveur :', response);
+                this.displayPopUp()
             } catch (error) {
                 console.error('Erreur lors de la soumission du formulaire :', error);
             }
@@ -116,6 +137,10 @@ export default {
         async fetchCookie() {
             const cookie = document.cookie.split("=")
             this.token = cookie[1]
+        },
+
+        handleFileChange(event) {
+            this.formData.Photo = event.target.files[0];
         },
     },
 };

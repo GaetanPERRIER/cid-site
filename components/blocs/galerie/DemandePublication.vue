@@ -1,37 +1,73 @@
 <template>
-    <section class=" demandes-comptes u-m50">
-        <div v-if="Object.keys(data).length === 0 ">AUCUNE DEMANDES {{ Object.keys(data).length}}</div>
+    <section class="demandes-publication u-m50 u-mb750">
+        <div v-if="Object.keys(data).length === 0 ">AUCUNE DEMANDES </div>
         <div v-if="Object.keys(data).length > 0" class="test u-flex u-flex-direction-column u-noselect u-gap20">
-            <div v-for="item in data" :key="item.ID_Etud" class="liste-container">
-                <div class="u-flex u-justify-content-between u-align-items-center u-plr15 top-side">
-                    <p>{{item.Nom }} {{ item.Prenom }}</p>
-                    <img class="triangle" src="../../../static/images/triangle.png" alt="">
-                </div>
-                <div class="u-flex u-flex-direction-column bottom-side">
-                    <div class="u-flex w100 u-p15">
-                        <div class="u-flex u-flex-direction-column u-gap15 w50">
-                            <p>Adresse Mail : {{ item.Email }}</p>
-                            <p>Numéro de téléphone : {{ item.Tel }}</p>
-                            <p>Date de naissance : {{ item.Date_Naiss }}</p>
+            <div v-for="item in data.results" :key="item.ID_Etud" class="liste-container">
+                <div v-if="item.Type === 'photo'">
+                    <div class="u-flex u-justify-content-between u-align-items-center u-plr15 top-side">
+                        <p>{{item.Etudiant}}</p>
+                        <img class="triangle" src="../../../static/images/triangle.png" alt="">
+                    </div>
+                    <div class="u-flex u-flex-direction-column bottom-side">
+                        <div class="u-flex w100 u-p15">
+                            <img class="w50" :src="item.Photo" alt="">
+                            <div class="u-flex u-flex-direction-column u-justify-content-center u-align-items-center u-gap50 u-ml15 w50">
+                                <h3 class="fs30px">Nom : {{ item.Titre }}</h3>
+                                <div class="u-flex u-flex-direction-column u-gap15 fs20px">
+                                    <p>Personnes sur l'image : {{ item.Personnes }}</p>
+                                    <p>Photographe : {{ item.Photographe }}</p>
+                                    <p>Date : {{ item.Date_Photo }}</p>
+                                    <p>Lieu : {{ item.Lieu_Photo }}</p>
+                                    <p>Theme : {{ item.Theme }}</p>
+                                    <p>Type de publication : Photo</p>
+                                </div>
+                                
+                            </div>
                         </div>
-                        <div class="u-flex u-flex-direction-column u-gap15 w50">
-                            <p>Année de début d'étude : {{ item.Deb_Etude }}</p>
-                            <p>Année de fin d'étude : {{ item.Fin_Etude }}</p>
+                        <div class="u-flex u-justify-content-end container-bouton-compte u-mb15 u-mr15">
+                            <div class="bouton-compte reject photos" :id="item.ID_Photo">Rejeter</div>
+                            <div class="bouton-compte accept photos" :id="item.ID_Photo">Accepter</div>
                         </div>
                     </div>
-                    <div class="u-flex u-justify-content-end container-bouton-compte u-mb15 u-mr15">
-                        <div class="bouton-compte reject" :id="item.ID_Etud">Rejeter</div>
-                        <div class="bouton-compte accept" :id="item.ID_Etud">Accepter</div>
+                </div>
+                <div v-if="item.Type === 'event'">
+                    <div class="u-flex u-justify-content-between u-align-items-center u-plr15 top-side">
+                        <p>{{item.Etudiant}}</p>
+                        <img class="triangle" src="../../../static/images/triangle.png" alt="">
+                    </div>
+                    <div class="u-flex u-flex-direction-column bottom-side">
+                        <div class="u-flex w100 u-p15">
+                            <img class="w50" :src="item.Image" alt="">
+                            <div class="u-flex u-flex-direction-column u-justify-content-center u-align-items-center u-gap50 u-ml15 w50">
+                                <h3 class="fs30px">Nom : {{ item.Titre }}</h3>
+                                <div class="u-flex u-flex-direction-column u-gap15 fs20px">
+                                    <p>Description : {{ item.Texte }}</p>
+                                    <p>Date : {{ item.Date_Eve }}</p>
+                                    <p>Lieu : {{ item.Lieu_Eve }}</p>
+                                    <p>Theme : {{ item.Theme }}</p>
+                                    <p>Type de publication : Evenement</p>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="u-flex u-justify-content-end container-bouton-compte u-mb15 u-mr15">
+                            <div class="bouton-compte reject events" :id="item.ID_Eve">Rejeter</div>
+                            <div class="bouton-compte accept events" :id="item.ID_Eve">Accepter</div>
+                        </div>
                     </div>
                 </div>
+
             </div>
+            
+
+        </div>
         </div>
     </section>
 </template>
     
     
 <style lang="scss">
-.demandes-comptes{
+.demandes-publication{
     .liste-container{
         box-shadow: 5px 5px 10px $color-dusky-blue;
         border-radius: 10px;
@@ -56,7 +92,6 @@
         display: none;
         div{
             div{
-                border-left: 2px solid black;
                 padding-left: 5px;
             }
         }
@@ -88,6 +123,9 @@
             .accept:hover{
                 background-color: rgb(3, 98, 3);
             }
+        }
+        img{
+            border-radius: 15px;
         }
     }
     .active{
@@ -144,29 +182,40 @@ export default {
             })
         },
 
+
         clickValider(){
             const decision = document.querySelectorAll(".bouton-compte")
             decision.forEach(button => {
                 button.addEventListener('click', () =>{
                     if(button.classList.contains("accept")){
-                        console.log('acc')
-                        this.postValiderPublication(button.id, 1)
+                        if(button.classList.contains("photos")){
+                            this.postValiderPublicationPhoto(button.id, 1)
+                        }
+                        else{
+                            this.postValiderPublicationEvent(button.id, 1)
+                        }
                     }
                     else{
-                        this.postValiderPublication(button.id,0)
+                        if(button.classList.contains("photos")){
+                            this.postValiderPublicationPhoto(button.id, 0)
+                        }
+                        else{
+                            this.postValiderPublicationEvent(button.id, 0)
+                        }
                     }
                     this.handleClick()
+                    this.displayListes()
                 })
             })
 
 
         },
 
-        async postValiderPublication(ID, choix){
-            const urlA = "https://cidapi.alwaysdata.net/valider_etudiant/";
-            const urlR = "https://cidapi.alwaysdata.net/rejeter_compte/";
+        async postValiderPublicationPhoto(ID, choix){
+            const urlA = "https://cidapi.alwaysdata.net/valider_photo/";
+            const urlR = "https://cidapi.alwaysdata.net/rejeter_photo/";
             const dataToSend = {
-                "ID_Etud" : ID 
+                "ID_Photo" : ID 
             }
             if(choix == 0){
                 try {
@@ -174,7 +223,6 @@ export default {
                         headers: {
                             "Content-Type": "application/json",
                             'Authorization': `Token ${this.token}`
-
                         },
                         withCredentials: true
                     }, {
@@ -191,7 +239,6 @@ export default {
                         headers: {
                             "Content-Type": "application/json",
                             'Authorization': `Token ${this.token}`
-
                         },
                         withCredentials: true
                     }, {
@@ -202,8 +249,50 @@ export default {
                     console.error("Erreur dans l'envoi des données :", error);
                 }
             }
-            
         },
+
+
+        async postValiderPublicationEvent(ID, choix){
+            const urlA = "https://cidapi.alwaysdata.net/valider_event/";
+            const urlR = "https://cidapi.alwaysdata.net/rejeter_event/";
+            const dataToSend = {
+                "ID_Eve" : ID 
+            }
+            if(choix == 0){
+                try {
+                    const response = await axios.post(urlR, dataToSend, {
+                        headers: {
+                            "Content-Type": "application/json",
+                            'Authorization': `Token ${this.token}`
+                        },
+                        withCredentials: true
+                    }, {
+
+                    });
+                    console.log(response)
+                } catch (error) {
+                    console.error("Erreur dans l'envoi des données :", error);
+                }
+            }
+            else{
+                try {
+                    const response = await axios.post(urlA, dataToSend, {
+                        headers: {
+                            "Content-Type": "application/json",
+                            'Authorization': `Token ${this.token}`
+                        },
+                        withCredentials: true
+                    }, {
+
+                    });
+                    console.log(response)
+                } catch (error) {
+                    console.error("Erreur dans l'envoi des données :", error);
+                }
+            }
+        },
+
+
 
         async fetchCookie() {
             const cookie = document.cookie.split("=")

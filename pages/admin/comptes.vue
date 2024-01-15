@@ -1,34 +1,29 @@
 <template>
-    <main>
-        <DemandesPublication :data="this.apiData" @boutonClicked="RefetchOnClick"/>
-    </main>
+    <Comptes :compteData ="this.apiData" @boutonClicked="RefetchOnClick"/>
 </template>
 
-
 <script>
-
-
-
 export default{
     data(){
         return {
-            apiData: {},
-            token: ""
+            apiData :{},
+            token:""
         }
     },
+
     components:{
-        DemandesPublication:() => import('@/components/blocs/galerie/DemandePublication.vue'),
+        Comptes:() => import('@/components/blocs/comptes/Comptes.vue'),
     },
+
 
     mounted(){
         this.fetchCookie()
-        this.FetchDemandesPublication()
+        this.FetchAllAccounts()
     },
 
-
     methods:{
-        async FetchDemandesPublication(){
-            const url ="https://cidapi.alwaysdata.net/get_images_events?validation=False&event=True&photo=True&info=True";
+        async FetchAllAccounts(){
+            const url = "https://cidapi.alwaysdata.net/get_etudiants/"
             const requestOptions = {
                 methods : "GET",
                 headers : {
@@ -47,15 +42,19 @@ export default{
             }            
         },
 
-        RefetchOnClick(){
-            this.FetchDemandesPublication()
-        },
-
-
         async fetchCookie() {
             const cookie = document.cookie.split("=")
             this.token = cookie[1]
         },
+
+        RefetchOnClick(){
+            this.FetchAllAccounts()
+        },
     }
+    
 }
 </script>
+
+<style lang="scss">
+
+</style>

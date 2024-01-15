@@ -17,7 +17,6 @@
             <NuxtLink to="/" class="bouton-menu logout" >Deconnexion</NuxtLink>
 
             <NuxtLink to="/admin/admin" class="bouton-menu admin">Admin</NuxtLink>
-            <NuxtLink to="/admin/admin" class="bouton-menu admin">Comptes</NuxtLink>
         </div> 
     </nav>
 </template>

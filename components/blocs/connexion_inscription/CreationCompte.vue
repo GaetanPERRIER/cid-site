@@ -46,8 +46,10 @@
             <input class="bouton-submit u-plr15 u-pt10 u-pb10" type="submit" value="Créer un compte">
         </form>
         <div class="popup-container">
-            <div class="popup">
+            <div class="popup u-flex u-flex-direction-column u-align-items-center u-justify-content-center u-p25">
                 <img class="cross" src="../../../static/images/cross.png" alt="">
+                <p>Votre demande de création de compte à bien été envoyé !</p>
+                <p>Si cette dernière est accepté vous recevrez un e-mail contenant votre identifiant et votre mot de passe</p>
             </div>
 
         </div>
@@ -120,12 +122,13 @@ section{
         left: 50%;
         transform: translate(-50% ,-50%);
         width: 400px;
-        height: 200px;
+        height: fit-content;
         background-color: white;
         border-radius: 10px;
         box-shadow: 0 0 15px gray;
+        text-align: center;
         .cross{
-            width: 30px;
+            width: 25px;
             position: absolute;
             top: 5px;
             right: 5px;
@@ -176,8 +179,6 @@ export default{
                 popup.style.zIndex = -1
                 this.$router.push('/');
             })
-            
-
         },
 
         async PostCreateAccount(){
@@ -185,7 +186,6 @@ export default{
             const dataToSend = this.formData;
             try{
                 const response = await axios.post(url, dataToSend, {withCredentials : true});
-                console.log(response)
                 this.displayPopUp()
             }catch(error){
                 console.error("Erreur lors de la soumission du formulaire :", error);

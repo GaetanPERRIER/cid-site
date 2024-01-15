@@ -39,7 +39,6 @@ export default{
             try {
                 const response = await fetch(url, requestOptions)
                 this.apiData = await response.json();
-                console.log(response)
             } catch (error) {
                 console.error('Erreur de récupération des données :', error);
 

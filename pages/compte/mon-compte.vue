@@ -1,5 +1,5 @@
 <template>
-    <MonCompte :data = "this.apiData"/>
+        <MonCompte :data = "this.apiData" @modifClicked="ModifCompte"/>
 </template>
 
 <style lang="scss">
@@ -41,13 +41,22 @@ export default{
             }
             try{
                 const response = await fetch(url, requestOptions)
-                console.log(response)
+               
                 this.apiData = await response.json()
+                console.log(this.apiData)
                 
             }catch(error){
                 console.error('Erreur de récupération des données :', error);
             }
         },
+
+        ModifCompte(apiDataEtud){
+            this.dataEtud = apiDataEtud
+            console.log(this.dataEtud)
+        },
+       
+
+
 
         async fetchCookie() {
             const cookie = document.cookie.split("=")
