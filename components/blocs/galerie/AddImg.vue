@@ -50,13 +50,7 @@
             </div>
 
             <input class="bouton-publier" type="submit" name="submit-button" value="Publier ">
-            <div class="popup-container">
-                <div class="popup u-flex u-flex-direction-column u-align-items-center u-justify-content-center u-p25">
-                    <img class="cross" src="../../../static/images/cross.png" alt="">
-                    <p>Votre demande de publication à bien été envoyé !</p>
-                    <p>Elle sera publiée une fois qu'un administrateur l'aura acceptée</p>
-                </div>
-            </div>  
+            
         </section>
     </form>
 </template>
